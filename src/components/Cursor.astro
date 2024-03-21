@@ -1,0 +1,49 @@
+<div id="circle" class="rounded-full"></div>
+
+<style>
+  #circle {
+    position: absolute;
+    background-color: var(--color-primary);
+    width: 15px;
+    height: 15px;
+  }
+</style>
+
+<script>
+  import { $ } from "@/consts/dom-selector";
+  const circle = $("#circle");
+
+  const mouse = {
+    x: 0,
+    y: 0,
+  };
+
+  const delayedMouse = {
+    x: 0,
+    y: 0,
+  };
+
+  const lerp = (a: number, b: number, t: number) => a + t * (b - a);
+
+  const moveCircle = (x: number, y: number) => {
+    circle.style.left = `${x}px`;
+    circle.style.top = `${y}px`;
+  };
+
+  const animate = () => {
+    const { x, y } = delayedMouse;
+
+    delayedMouse.x = lerp(x, mouse.x, 0.075);
+    delayedMouse.y = lerp(y, mouse.y, 0.075);
+
+    moveCircle(delayedMouse.x, delayedMouse.y);
+    requestAnimationFrame(animate);
+  };
+
+  document.addEventListener("mousemove", (e) => {
+    const { clientX, clientY } = e;
+    mouse.x = clientX;
+    mouse.y = clientY;
+  });
+  animate();
+</script>

@@ -1,0 +1,98 @@
+---
+import Menu from "../components/icons/Menu.astro";
+import Close from "../components/icons/Close.astro";
+
+const pages = [
+  {
+    name: "About",
+    label: "about",
+    href: "#about",
+  },
+  {
+    name: "Work",
+    label: "work",
+    href: "#work",
+  },
+  {
+    name: "Contact",
+    label: "contact",
+    href: "#contact",
+  },
+].map((page) => ({
+  ...page,
+  active: Astro.url.pathname === page.href,
+}));
+---
+
+<header
+  id="header-nav"
+  class="sticky top-0 w-full py-4 px-8 lg:px-16 z-50 bg-transparent text-white duration-300 transform"
+>
+  <div class="flex max-w-7xl mx-auto items-center justify-between gap-4">
+    <a
+      href="./"
+      class="hover:scale-105 transform duration-300 w-20 md:w-24 z-10"
+    >
+      <img src="/logo.webp" alt="lvda logo" class="w-full" loading="lazy" />
+    </a>
+    <nav
+      id="header-menu"
+      class="flex flex-col fixed md:static w-full inset-0 h-dvh md:h-[initial] md:w-auto bg-[#000000]/90 md:bg-[initial] gap-16 md:gap-8 uppercase text-lg items-center justify-center -translate-y-full transition-transform duration-300 target:translate-y-0 md:flex-row md:translate-y-[initial]"
+    >
+      {
+        pages.map((link) => (
+          <a
+            class="underline-transition transform duration-300 text-xl md:text-sm"
+            href={link.href}
+            aria-label={link.label}
+          >
+            {link.name}
+          </a>
+        ))
+      }
+      <a href="#header-nav" class="md:hidden absolute top-6 right-9">
+        <Close />
+      </a>
+    </nav>
+    <a href="#header-menu" class="md:hidden">
+      <Menu />
+    </a>
+  </div>
+</header>
+<style>
+  .underline-transition:hover:before {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+
+  .underline-active:before {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+
+  .underline-transition:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    border-radius: 4px;
+    background-color: var(--color-primary);
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transform: var(--underline-transform, scaleX(0));
+    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+</style>
+<script>
+  const navbar = document.querySelector("#header-nav");
+
+  window.onwheel = (e) => {
+    if (e.deltaY > 0) {
+      navbar?.classList.add("-translate-y-full");
+    } else {
+      navbar?.classList.remove("-translate-y-full");
+    }
+  };
+</script>
