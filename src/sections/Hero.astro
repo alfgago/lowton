@@ -5,10 +5,15 @@ import { cursorState } from "@/stores/cursorStore";
 
 <section id="hero" class="px-8 lg:px-16">
   <div
-    class="grid items-end pb-10 mx-auto lg:grid-cols-12 grid-cols-6 select-none hh"
+    class="grid items-center lg:items-end lg:pb-10 mx-auto lg:grid-cols-12 grid-cols-6 select-none hh"
   >
     <div class="col-span-6 lg:col-span-11">
       <HeroTitle client:media="(min-width: 768px)" />
+      <h1
+        class="flex lg:hidden text-[12.5vw] sm:text-[10vw] md:text-[8vw] md:max-w-3xl uppercase text-balance font-medium leading-tight text-white"
+      >
+        Hi, let's increase the value of your brand.
+      </h1>
     </div>
   </div>
 
@@ -17,6 +22,4 @@ import { cursorState } from "@/stores/cursorStore";
       height: calc(100dvh - 70px);
     }
   </style>
-
-  <script></script>
 </section>
