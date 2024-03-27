@@ -26,7 +26,7 @@ const pages = [
 
 <header
   id="header-nav"
-  class="sticky top-0 w-full py-4 px-8 lg:px-16 z-50 bg-transparent text-white duration-300 transform"
+  class="sticky top-0 w-full py-4 px-8 lg:px-16 z-50 text-white duration-300 transform"
 >
   <div class="flex max-w-7xl mx-auto items-center justify-between gap-4">
     <a
@@ -86,7 +86,9 @@ const pages = [
   }
 </style>
 <script>
-  const navbar = document.querySelector("#header-nav");
+  import { $ } from "@/consts/dom-selector";
+
+  const navbar = $("#header-nav");
 
   window.onwheel = (e) => {
     if (e.deltaY > 0) {
@@ -95,4 +97,12 @@ const pages = [
       navbar?.classList.remove("-translate-y-full");
     }
   };
+
+  function handleScroll() {
+    let isInTop = window.scrollY === 0;
+    navbar.classList.toggle("bg-transparent", !isInTop);
+    navbar.classList.toggle("bg-transparent", isInTop);
+  }
+
+  window.addEventListener("scroll", handleScroll);
 </script>

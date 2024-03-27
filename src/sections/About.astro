@@ -1,0 +1,114 @@
+<section id="about" class="px-8 lg:px-16">
+  <div class="flex flex-col md:flex-row w-full md:justify-between">
+    <div
+      class="md:w-1/2 text-white font-medium text-sm md:text-base pb-4 md:p-0 uppercase"
+    >
+      <span class="mr-2">•</span>About Us
+    </div>
+    <div class="w-full md:w-[34rem] flex flex-col gap-8 md:gap-16 pb-6">
+      <p class="text-white font-medium text-xl md:text-2xl text-balance">
+        We are experts in mixing the rational and the emotional to offer the
+        most innovative and imaginative solutions to help your brand grow.
+      </p>
+      <div class="flex gap-16 md:justify-end">
+        <div class="flex flex-col gap-4">
+          <span
+            class="counter text-[var(--color-primary)] text-3xl sm:text-6xl md:text-8xl"
+            data-count="1320"
+            >0
+          </span>
+          <span class="bg-[var(--color-primary)] p-[1px] w-full"></span>
+          <span class="text-[var(--color-primary)] text-sm font-normal"
+            >Completed Projects</span
+          >
+        </div>
+        <div class="flex flex-col gap-4">
+          <span
+            class="counter text-[var(--color-primary)] text-3xl sm:text-6xl md:text-8xl"
+            data-count="20"
+            >0
+          </span>
+          <span class="bg-[var(--color-primary)] p-[1px]"></span>
+          <span class="text-[var(--color-primary)] text-sm font-normal"
+            >Years of Experience</span
+          >
+        </div>
+      </div>
+      <a
+        class="group flex gap-x-3 rounded-full bg-transparent border w-fit px-6 py-3 font-base text-white"
+        href="#contact"
+        ><div class="group relative overflow-hidden xl:text-base 2xl:text-md">
+          <span
+            class="ease-out-expo flex transition-all duration-500 group-hover:-translate-y-12"
+            >More About Us</span
+          ><span
+            class="ease-out-expo absolute left-0 top-0 translate-y-12 transition-all duration-500 group-hover:-translate-y-0"
+            >More About Us</span
+          >
+        </div>
+        <span
+          class="relative flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-mint fill-charcoal"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="white"
+            width="25"
+            height="26"
+            class="ease-out-expo absolute h-auto w-auto -translate-x-12 translate-y-12 transition-all duration-500 group-hover:-translate-x-0 group-hover:translate-y-0"
+            ><path
+              d="M15.835 10.754v5.912c0 .22.075.405.224.555a.75.75 0 0 0 .554.223c.22 0 .406-.075.555-.224a.75.75 0 0 0 .223-.554v-7.78a.753.753 0 0 0-.224-.554.75.75 0 0 0-.554-.223H8.834a.753.753 0 0 0-.555.224.75.75 0 0 0-.223.554c0 .22.075.405.224.554a.75.75 0 0 0 .554.224h5.912l-6.923 6.923a.738.738 0 0 0-.214.545c0 .22.071.402.214.544a.738.738 0 0 0 .544.214c.22 0 .402-.071.545-.214l6.923-6.923Z"
+            ></path></svg
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            fill="white"
+            height="26"
+            class="ease-out-expo absolute h-auto w-auto transition-all duration-500 group-hover:-translate-y-12 group-hover:translate-x-12"
+            ><path
+              d="M15.835 10.754v5.912c0 .22.075.405.224.555a.75.75 0 0 0 .554.223c.22 0 .406-.075.555-.224a.75.75 0 0 0 .223-.554v-7.78a.753.753 0 0 0-.224-.554.75.75 0 0 0-.554-.223H8.834a.753.753 0 0 0-.555.224.75.75 0 0 0-.223.554c0 .22.075.405.224.554a.75.75 0 0 0 .554.224h5.912l-6.923 6.923a.738.738 0 0 0-.214.545c0 .22.071.402.214.544a.738.738 0 0 0 .544.214c.22 0 .402-.071.545-.214l6.923-6.923Z"
+            ></path></svg
+          >
+        </span></a
+      >
+    </div>
+  </div>
+</section>
+<script>
+  import { $, $$ } from "@/consts/dom-selector";
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const counters = $$(".counter");
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#about",
+      start: "top bottom",
+    },
+  });
+
+  counters.forEach((counter) => {
+    const endValue = Math.round(parseInt(counter.getAttribute("data-count")!));
+
+    tl.fromTo(
+      counter,
+      { textContent: 0 },
+      {
+        textContent: endValue,
+        duration: 1,
+        ease: "power3.out",
+        onUpdate: () => {
+          if (counter.textContent !== null) {
+            const roundedValue = Math.round(Number(counter.textContent));
+            counter.textContent = roundedValue.toString();
+          }
+        },
+        onComplete: () => {
+          counter.textContent += "+";
+        },
+      },
+      0
+    );
+  });
+</script>
