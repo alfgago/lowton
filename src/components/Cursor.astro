@@ -1,9 +1,4 @@
----
-const { isActive } = Astro.props;
-console.log(isActive);
----
-
-<div class:list={["custom-cursor", { blurAnimation: isActive }]}></div>
+<div class="custom-cursor"></div>
 
 <style>
   .custom-cursor {
@@ -32,3 +27,46 @@ console.log(isActive);
     filter: blur(100px);
   }
 </style>
+
+<script>
+  import { $, $$ } from "../consts/dom-selector";
+  import { gsap } from "gsap";
+
+  const cursor = $(".custom-cursor");
+  const mouseOverElements = $$(".data-cursor");
+  let rafId = null;
+
+  mouseOverElements.forEach((e) => {
+    e.addEventListener("mouseover", () => {
+      cursor.classList.add("blurAnimation");
+    });
+    e.addEventListener("mouseleave", () => {
+      cursor.classList.remove("blurAnimation");
+    });
+  });
+
+  const lerp = (x: number, y: number, a: number) => x * (1 - a) + y * a;
+
+  const mouse = { x: 0, y: 0 };
+  const delayedMouse = { x: 0, y: 0 };
+
+  const manageMouseMove = (e: { clientX: number; clientY: number }) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  };
+
+  const animate = () => {
+    delayedMouse.x = lerp(delayedMouse.x, mouse.x, 0.075);
+    delayedMouse.y = lerp(delayedMouse.y, mouse.y, 0.075);
+    moveCircle(delayedMouse.x, delayedMouse.y);
+
+    rafId = requestAnimationFrame(animate);
+  };
+
+  const moveCircle = (x: number, y: number) => {
+    gsap.set(cursor, { x, y, xPercent: -50, yPercent: -50 });
+  };
+
+  animate();
+  window.addEventListener("mousemove", manageMouseMove);
+</script>
