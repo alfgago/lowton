@@ -1,0 +1,120 @@
+---
+import { Image } from "astro:assets";
+import testimonialImage from "@/assets/testimonial1.webp";
+import testimonialImage2 from "@/assets/testimonial2.webp";
+import testimonialImage3 from "@/assets/testimonial3.webp";
+---
+
+<section id="testimonials" class="px-8 lg:px-16">
+  <div class="flex flex-col md:flex-row w-full md:gap-4 md:justify-between">
+    <div
+      class="md:w-1/2 flex flex-col gap-4 text-white font-medium text-sm md:text-base uppercase"
+    >
+      <div><span class="mr-2">•</span><span>Testimonials</span></div>
+      <div
+        class="text-white font-medium text-4xl sm:text-5xl md:text-7xl uppercase"
+      >
+        <h3>What Our Clients Say</h3>
+      </div>
+    </div>
+    <div
+      class="w-full flex flex-col gap-4 md:gap-16 md:w-1/2 pb-6 mt-16 sm:mt-0"
+    >
+      <div class="flex flex-col gap-4 md:gap-16 data-cursor">
+        <span
+          class="text-[var(--color-primary)] font-normal text-sm md:text-base"
+        >
+          01
+        </span>
+        <p class="text-white font-normal text-sm md:text-base text-balance">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
+          elementum orci. Donec maximus, augue sed gravida blandit, enim sem
+          sagittis arcu, a condimentum odio magna a est.
+        </p>
+        <div class="flex w-full gap-4 items-center">
+          <div class="size-10 sm:size-14 overflow-hidden rounded-full">
+            <Image
+              src={testimonialImage}
+              alt="testimonial image"
+              width={56}
+              height={56}
+              class:list={["w-full", "h-full", "object-cover"]}
+            />
+          </div>
+          <div class="flex flex-col">
+            <h5 class="font-medium text-white text-lg sm:text-xl">
+              Brian Johnson
+            </h5>
+            <span class="text-white font-normal text-sm sm:text-base"
+              >Digital Solutions Agency</span
+            >
+          </div>
+        </div>
+        <span class="bg-[var(--color-secondary)] p-[0.1px] w-full"></span>
+      </div>
+      <div class="flex flex-col gap-4 md:gap-16 data-cursor">
+        <span
+          class="text-[var(--color-primary)] font-normal text-sm md:text-base"
+        >
+          02
+        </span>
+        <p class="text-white font-normal text-sm md:text-base text-balance">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
+          elementum orci. Donec maximus, augue sed gravida blandit, enim sem
+          sagittis arcu, a condimentum odio magna a est.
+        </p>
+        <div class="flex w-full gap-4 items-center">
+          <div class="size-10 sm:size-14 overflow-hidden rounded-full">
+            <Image
+              src={testimonialImage2}
+              alt="testimonial image2"
+              width={56}
+              height={56}
+              class:list={["w-full", "h-full", "object-cover"]}
+            />
+          </div>
+          <div class="flex flex-col">
+            <h5 class="font-medium text-white text-lg sm:text-xl">
+              Kevin Davis
+            </h5>
+            <span class="text-white font-normal text-sm sm:text-base"
+              >Creative Impact Studios</span
+            >
+          </div>
+        </div>
+        <span class="bg-[var(--color-secondary)] p-[0.1px] w-full"></span>
+      </div>
+      <div class="flex flex-col gap-4 md:gap-16 data-cursor">
+        <span
+          class="text-[var(--color-primary)] font-normal text-sm md:text-base"
+        >
+          03
+        </span>
+        <p class="text-white font-normal text-sm md:text-base text-balance">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
+          elementum orci. Donec maximus, augue sed gravida blandit, enim sem
+          sagittis arcu, a condimentum odio magna a est.
+        </p>
+        <div class="flex w-full gap-4 items-center">
+          <div class="size-10 sm:size-14 overflow-hidden rounded-full">
+            <Image
+              src={testimonialImage3}
+              alt="testimonial image3"
+              width={56}
+              height={56}
+              class:list={["w-full", "h-full", "object-cover"]}
+            />
+          </div>
+          <div class="flex flex-col">
+            <h5 class="font-medium text-white text-lg sm:text-xl">
+              Jake Smith
+            </h5>
+            <span class="text-white font-normal text-sm sm:text-base"
+              >PixelCraft Innovations</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

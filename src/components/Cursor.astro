@@ -1,4 +1,12 @@
-<div class="custom-cursor"></div>
+---
+interface Props {
+  className: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div class:list={["custom-cursor", className]}></div>
 
 <style>
   .custom-cursor {
