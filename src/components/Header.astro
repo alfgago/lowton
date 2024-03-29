@@ -30,8 +30,8 @@ const pages = [
 >
   <div class="flex max-w-7xl mx-auto items-center justify-between gap-4">
     <a
-      href="./"
-      class="hover:scale-105 transform duration-300 w-20 md:w-24 z-10"
+      href="/"
+      class="hover:scale-105 transform duration-300 w-20 md:w-40 z-10"
     >
       <img src="/logo.webp" alt="lvda logo" class="w-full" loading="lazy" />
     </a>
@@ -42,7 +42,7 @@ const pages = [
       {
         pages.map((link) => (
           <a
-            class="underline-transition transform duration-300 text-xl md:text-sm"
+            class="underline-transition transform duration-300 text-xl"
             href={link.href}
             aria-label={link.label}
           >

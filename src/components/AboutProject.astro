@@ -1,0 +1,96 @@
+---
+interface Props {
+  client: string;
+  industry: string;
+  services: string[];
+  duration: string;
+  url: string;
+  about: string;
+}
+
+const { client, industry, services, duration, url, about } = Astro.props;
+---
+
+<section id="about-project" class="px-8 lg:px-16 pb-8">
+  <div
+    class="text-white font-medium text-sm md:text-base uppercase py-8 border-t border-[var(--color-secondary)]"
+  >
+    <span class="mr-2">•</span>About the Project
+  </div>
+  <div class="flex gap-8">
+    <div class="w-3/5">
+      <p class="text-white text-xl font-normal">
+        {about}
+      </p>
+    </div>
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-2">
+        <p class="text-white text-base font-medium">Client</p>
+        <p class="text-[var(--color-secondary)] text-base font-normal">
+          {client}
+        </p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <p class="text-white text-base font-medium">Services</p>
+        <ul>
+          {
+            services.map((service) => (
+              <li class="text-[var(--color-secondary)] text-base font-normal">
+                {service}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <a
+        class="group flex gap-x-3 rounded-full bg-transparent border w-fit px-6 py-3 font-base text-white"
+        href={url}
+        ><div class="group relative overflow-hidden xl:text-base 2xl:text-md">
+          <span
+            class="ease-out-expo flex transition-all duration-500 group-hover:-translate-y-12"
+            >Visit Website</span
+          ><span
+            class="ease-out-expo absolute left-0 top-0 translate-y-12 transition-all duration-500 group-hover:-translate-y-0"
+            >Visit Website</span
+          >
+        </div>
+        <span
+          class="relative flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-mint fill-charcoal"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="white"
+            width="25"
+            height="26"
+            class="ease-out-expo absolute h-auto w-auto -translate-x-12 translate-y-12 transition-all duration-500 group-hover:-translate-x-0 group-hover:translate-y-0"
+            ><path
+              d="M15.835 10.754v5.912c0 .22.075.405.224.555a.75.75 0 0 0 .554.223c.22 0 .406-.075.555-.224a.75.75 0 0 0 .223-.554v-7.78a.753.753 0 0 0-.224-.554.75.75 0 0 0-.554-.223H8.834a.753.753 0 0 0-.555.224.75.75 0 0 0-.223.554c0 .22.075.405.224.554a.75.75 0 0 0 .554.224h5.912l-6.923 6.923a.738.738 0 0 0-.214.545c0 .22.071.402.214.544a.738.738 0 0 0 .544.214c.22 0 .402-.071.545-.214l6.923-6.923Z"
+            ></path></svg
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            fill="white"
+            height="26"
+            class="ease-out-expo absolute h-auto w-auto transition-all duration-500 group-hover:-translate-y-12 group-hover:translate-x-12"
+            ><path
+              d="M15.835 10.754v5.912c0 .22.075.405.224.555a.75.75 0 0 0 .554.223c.22 0 .406-.075.555-.224a.75.75 0 0 0 .223-.554v-7.78a.753.753 0 0 0-.224-.554.75.75 0 0 0-.554-.223H8.834a.753.753 0 0 0-.555.224.75.75 0 0 0-.223.554c0 .22.075.405.224.554a.75.75 0 0 0 .554.224h5.912l-6.923 6.923a.738.738 0 0 0-.214.545c0 .22.071.402.214.544a.738.738 0 0 0 .544.214c.22 0 .402-.071.545-.214l6.923-6.923Z"
+            ></path></svg
+          >
+        </span></a
+      >
+    </div>
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-2">
+        <p class="text-white text-base font-medium">Industry</p>
+        <p class="text-[var(--color-secondary)] text-base font-normal">
+          {industry}
+        </p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <p class="text-white text-base font-medium">Duration</p>
+        <p class="text-[var(--color-secondary)] text-base font-normal">
+          {duration}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

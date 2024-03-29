@@ -1,0 +1,49 @@
+---
+import { PROJECTS } from "@/consts/projects";
+import Layout from "@/layouts/Layout.astro";
+import ProjectTitle from "@/components/ProjectTitle.astro";
+import AboutProject from "@/components/AboutProject.astro";
+
+export function getStaticPaths() {
+  return PROJECTS.map(({ id }) => ({
+    params: { id },
+  }));
+}
+
+const { id } = Astro.params;
+
+const [project] = PROJECTS.filter((project) => project.id === id);
+---
+
+<Layout
+  title={`${project.title} - Lowton Advertising`}
+  description=`Información acerca del proyecto ${project.title}`
+>
+  <main>
+    <ProjectTitle
+      title={project.title}
+      client={project.client}
+      year={project.year}
+      description={project.description}
+    />
+    <div class="px-8 md:px-16 pb-8">
+      <picture class:list={["w-full max-w-[1125px] aspect-video"]}>
+        <img
+          decoding="async"
+          class:list={["w-full object-cover"]}
+          alt={`Imagen de ${project.title}`}
+          src={`${id}.webp`}
+          loading="lazy"
+        />
+      </picture>
+    </div>
+    <AboutProject
+      client={project.client}
+      industry={project.industry}
+      services={project.services}
+      duration={project.duration}
+      url={project.url}
+      about={project.about}
+    />
+  </main>
+</Layout>

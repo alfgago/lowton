@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  client: string;
+  year: number;
+}
+
+const { title, description, year, client } = Astro.props;
+---
+
+<section id="project-hero" class="px-8 lg:px-16 mt-8">
+  <div
+    class="flex flex-col gap-4 pb-8 border-b border-[var(--color-secondary)]"
+  >
+    <div class="text-white font-medium text-sm md:text-base uppercase">
+      <span class="mr-2">•</span><span>Portfolio</span>
+    </div>
+    <h1
+      class="text-white font-medium text-4xl sm:text-5xl md:text-7xl uppercase"
+    >
+      {title}
+    </h1>
+  </div>
+  <div class="flex w-full mt-14 pb-10">
+    <div class="flex w-1/2">
+      <div class="flex flex-col w-1/2 gap-2">
+        <p class="text-white text-base font-medium">Client</p>
+        <p class="text-white text-base font-normal">{client}</p>
+      </div>
+      <div class="flex flex-col w-1/2 gap-2">
+        <p class="text-white text-base font-medium">Year</p>
+        <p class="text-white text-base font-normal">{year}</p>
+      </div>
+    </div>
+    <div class="w-1/2 pl-12">
+      <p class="text-white text-base font-normal">{description}</p>
+    </div>
+  </div>
+</section>

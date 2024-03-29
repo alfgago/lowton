@@ -8,6 +8,7 @@ const { title, description } = Astro.props;
 import "@fontsource-variable/inter";
 import Header from "@/components/Header.astro";
 import Cursor from "@/components/Cursor.astro";
+import Footer from "@/sections/Footer.astro";
 ---
 
 <!doctype html>
@@ -24,9 +25,11 @@ import Cursor from "@/components/Cursor.astro";
     <Cursor className="hidden lg:block" />
     <Header />
     <slot />
+    <Footer />
     <style is:global>
       :root {
         --color-primary: #00ff18;
+        --color-hover: #00660a;
         --color-secondary: #ababab;
         --color-text: #ffffff;
         --background-color: #0a0a0c;
