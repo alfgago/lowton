@@ -12,6 +12,8 @@ export function getStaticPaths() {
 
 const { id } = Astro.params;
 
+export const prerender = false;
+
 const [project] = PROJECTS.filter((project) => project.id === id);
 ---
 
@@ -29,11 +31,10 @@ const [project] = PROJECTS.filter((project) => project.id === id);
     <div class="px-8 md:px-16 pb-8">
       <picture class:list={["w-full max-w-[1125px] aspect-video"]}>
         <img
-          decoding="async"
+          transition:name="project"
           class:list={["w-full object-cover"]}
           alt={`Imagen de ${project.title}`}
           src={`${id}.webp`}
-          loading="lazy"
         />
       </picture>
     </div>

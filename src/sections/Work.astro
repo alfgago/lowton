@@ -20,13 +20,16 @@ import projectImage from "@/assets/project.webp";
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
     <div class="rounded-md">
-      <Image
-        src={projectImage}
-        alt="work image"
-        width={300}
-        height={200}
-        class:list={["w-full", "object-cover"]}
-      />
+      <a href="/projects/proyecto-ejemplo">
+        <img
+          transition:name="project"
+          class:list={["w-full object-cover max-h-[250px]"]}
+          width="300"
+          height="200"
+          alt="Imagen de Proyecto1"
+          src="/projects/proyecto-ejemplo.webp"
+        />
+      </a>
     </div>
     <div class="rounded-md">
       <Image
