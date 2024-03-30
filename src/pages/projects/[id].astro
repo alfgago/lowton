@@ -3,6 +3,7 @@ import { PROJECTS } from "@/consts/projects";
 import Layout from "@/layouts/Layout.astro";
 import ProjectTitle from "@/components/ProjectTitle.astro";
 import AboutProject from "@/components/AboutProject.astro";
+import { Image } from "astro:assets";
 
 export function getStaticPaths() {
   return PROJECTS.map(({ id }) => ({
@@ -12,7 +13,7 @@ export function getStaticPaths() {
 
 const { id } = Astro.params;
 
-export const prerender = false;
+export const prerender = true;
 
 const [project] = PROJECTS.filter((project) => project.id === id);
 ---
@@ -30,11 +31,13 @@ const [project] = PROJECTS.filter((project) => project.id === id);
     />
     <div class="px-8 md:px-16 pb-8">
       <picture class:list={["w-full max-w-[1125px] aspect-video"]}>
-        <img
+        <Image
+          width={1125}
+          height={750}
           transition:name="project"
           class:list={["w-full object-cover"]}
           alt={`Imagen de ${project.title}`}
-          src={`${id}.webp`}
+          src={`/img/projects/${id}.webp`}
         />
       </picture>
     </div>
