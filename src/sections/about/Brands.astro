@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import projectImage from "@/assets/project.webp";
+---
+
+<section id="brands" class="px-8 lg:px-16">
+  <div class="flex flex-col gap-4">
+    <div class="text-white font-medium text-sm md:text-base uppercase">
+      <span class="mr-2">•</span>Clients
+    </div>
+    <div
+      class="text-white font-medium text-4xl sm:text-5xl md:text-7xl uppercase text-balance"
+    >
+      <h3>Brands We Worked With</h3>
+    </div>
+  </div>
+  <div
+    class="mx-auto overflow-hidden relative w-full mt-12 [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]"
+  >
+    <div
+      class="flex gap-8 flex-nowrap animate-infinite-scroll slide-track data-cursor"
+    >
+      {
+        Array.from({ length: 8 }, (_, index) => (
+          <div class="w-[270px]" id={`logo-${index}`}>
+            <Image
+              src={projectImage}
+              alt="Logo Client Image"
+              width={270}
+              height={270}
+              class:list={["w-full", "object-cover", "aspect-square"]}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div
+    class="mx-auto overflow-hidden relative w-full mt-12 [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)] pb-12"
+  >
+    <div
+      class="flex gap-8 flex-nowrap animate-infinite-scroll-reverse slide-track data-cursor"
+    >
+      {
+        Array.from({ length: 8 }, (_, index) => (
+          <div class="w-[270px]" id={`logo-${index}`}>
+            <Image
+              src={projectImage}
+              alt="Logo Client Image"
+              width={270}
+              height={270}
+              class:list={["w-full", "object-cover", "aspect-square"]}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .slide-track {
+    width: calc(270px * 8);
+  }
+</style>

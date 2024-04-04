@@ -21,20 +21,20 @@ import { PROJECTS } from "@/consts/projects";
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
     {
-      PROJECTS.map((project) => {
+      PROJECTS.map((project) => (
         <div class="rounded-md">
           <a href={`/projects/${project.id}`}>
-            <img
+            <Image
               transition:name="project"
               class:list={["w-full object-cover max-h-[250px]"]}
               width="300"
               height="200"
               alt={`Imagen de ${project.title}`}
-              src={`img/projects/${project.id}.webp`}
+              src={`/img/projects/${project.id}.webp`}
             />
           </a>
-        </div>;
-      })
+        </div>
+      ))
     }
     <div class="rounded-md">
       <Image

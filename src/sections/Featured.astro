@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import projectImage from "@/assets/project.webp";
+import CTAButton from "@/components/CTAButton.astro";
+import CTAButtonGreen from "@/components/CTAButtonGreen.astro";
 ---
 
 <section id="featured" class="px-8 lg:px-16">
@@ -29,39 +31,7 @@ import projectImage from "@/assets/project.webp";
       </div>
       <div class="flex justify-between items-center">
         <h4 class="text-base text-[var(--color-primary)]">Travel Bliss</h4>
-        <a
-          class="group flex gap-x-3 w-fit font-base text-xs text-[var(--color-primary)] fill-[var(--color-primary)]"
-          href="#contact"
-          ><div class="group relative overflow-hidden">
-            <span
-              class="ease-out-expo flex transition-all duration-500 group-hover:-translate-y-12"
-              >View Project</span
-            ><span
-              class="ease-out-expo absolute left-0 top-0 translate-y-12 transition-all duration-500 group-hover:-translate-y-0"
-              >View Project</span
-            >
-          </div>
-          <span
-            class="relative flex h-4 w-4 items-center justify-center overflow-hidden rounded-full"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="ease-out-expo absolute h-auto w-auto -translate-x-12 translate-y-12 transition-all duration-500 group-hover:-translate-x-0 group-hover:translate-y-0"
-              ><path
-                d="M13.47 5.47a.75.75 0 0 1 1.06 0l6 6a.75.75 0 0 1 0 1.06l-6 6a.75.75 0 1 1-1.06-1.06l4.72-4.72H4a.75.75 0 0 1 0-1.5h14.19l-4.72-4.72a.75.75 0 0 1 0-1.06"
-              ></path></svg
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="ease-out-expo absolute h-auto w-auto transition-all duration-500 group-hover:-translate-y-12 group-hover:translate-x-12"
-              ><path
-                d="M13.47 5.47a.75.75 0 0 1 1.06 0l6 6a.75.75 0 0 1 0 1.06l-6 6a.75.75 0 1 1-1.06-1.06l4.72-4.72H4a.75.75 0 0 1 0-1.5h14.19l-4.72-4.72a.75.75 0 0 1 0-1.06"
-              ></path></svg
-            >
-          </span></a
-        >
+        <CTAButtonGreen target="_self" url="#contact" text="View Project" />
       </div>
       <p class="text-xs md:text-sm text-[var(--color-primary)]">
         UI / UX Design • Web Development • Graphic Design
@@ -79,39 +49,7 @@ import projectImage from "@/assets/project.webp";
       </div>
       <div class="flex justify-between items-center">
         <h4 class="text-base text-[var(--color-primary)]">Culinary Craft</h4>
-        <a
-          class="group flex gap-x-3 w-fit font-base text-xs text-[var(--color-primary)] fill-[var(--color-primary)]"
-          href="#contact"
-          ><div class="group relative overflow-hidden">
-            <span
-              class="ease-out-expo flex transition-all duration-500 group-hover:-translate-y-12"
-              >View Project</span
-            ><span
-              class="ease-out-expo absolute left-0 top-0 translate-y-12 transition-all duration-500 group-hover:-translate-y-0"
-              >View Project</span
-            >
-          </div>
-          <span
-            class="relative flex h-4 w-4 items-center justify-center overflow-hidden rounded-full"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="ease-out-expo absolute h-auto w-auto -translate-x-12 translate-y-12 transition-all duration-500 group-hover:-translate-x-0 group-hover:translate-y-0"
-              ><path
-                d="M13.47 5.47a.75.75 0 0 1 1.06 0l6 6a.75.75 0 0 1 0 1.06l-6 6a.75.75 0 1 1-1.06-1.06l4.72-4.72H4a.75.75 0 0 1 0-1.5h14.19l-4.72-4.72a.75.75 0 0 1 0-1.06"
-              ></path></svg
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="ease-out-expo absolute h-auto w-auto transition-all duration-500 group-hover:-translate-y-12 group-hover:translate-x-12"
-              ><path
-                d="M13.47 5.47a.75.75 0 0 1 1.06 0l6 6a.75.75 0 0 1 0 1.06l-6 6a.75.75 0 1 1-1.06-1.06l4.72-4.72H4a.75.75 0 0 1 0-1.5h14.19l-4.72-4.72a.75.75 0 0 1 0-1.06"
-              ></path></svg
-            >
-          </span></a
-        >
+        <CTAButtonGreen target="_self" url="#contact" text="View Project" />
       </div>
       <p class="text-xs md:text-sm text-[var(--color-primary)]">
         UI / UX Design • Web Development

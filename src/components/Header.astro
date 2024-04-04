@@ -6,7 +6,7 @@ const pages = [
   {
     name: "About",
     label: "about",
-    href: "#about",
+    href: "/about",
   },
   {
     name: "Work",
@@ -32,6 +32,8 @@ const pages = [
     <a
       href="/"
       class="hover:scale-105 transform duration-300 w-20 md:w-40 z-10"
+      aria-label="Lowton logo"
+      title="Lowton logo"
     >
       <img src="/logo.webp" alt="lvda logo" class="w-full" loading="lazy" />
     </a>
@@ -42,7 +44,10 @@ const pages = [
       {
         pages.map((link) => (
           <a
-            class="underline-transition transform duration-300 text-xl"
+            class:list={[
+              "underline-transition transform duration-300 text-xl",
+              { active: link.active },
+            ]}
             href={link.href}
             aria-label={link.label}
           >
@@ -65,9 +70,9 @@ const pages = [
     transform: scaleX(1);
   }
 
-  .underline-active:before {
-    transform-origin: left;
-    transform: scaleX(1);
+  .active:before {
+    transform-origin: left !important;
+    transform: scaleX(1) !important;
   }
 
   .underline-transition:before {

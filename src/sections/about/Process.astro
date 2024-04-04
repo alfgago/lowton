@@ -1,0 +1,65 @@
+---
+import ProcessCard from "@/components/ProcessCard.astro";
+---
+
+<section id="process" class="px-8 lg:px-16">
+  <div class="flex flex-col gap-4">
+    <div class="text-white font-medium text-sm md:text-base uppercase">
+      <span class="mr-2">•</span>Process
+    </div>
+    <div
+      class="text-white font-medium text-4xl sm:text-5xl md:text-7xl uppercase"
+    >
+      <h3>How It Works</h3>
+    </div>
+  </div>
+  <div class="overflow-x-hidden relative">
+    <div
+      class="flex gap-8 mt-12 pb-12 border-b border-[var(--color-primary)] process-container"
+    >
+      <ProcessCard
+        title="1. Request Project"
+        text="It all starts with your project request. I listen carefully to understand what you need and your ideas. Your ideas are my inspiration, and understanding your goals is my top priority."
+      />
+      <ProcessCard
+        title="2. Strategy Session"
+        text="In this step, creativity takes center stage. I delve into brainstorming sessions to conceptualize your project. This is where I explore innovative solutions and artistic approaches to bring your vision to life."
+      />
+      <ProcessCard
+        title="3. Design & Development"
+        text="With a clear concept in mind, we move to the design phase. This is where I weave together visual elements, user-friendly interfaces, and all the creative components that will make your project stand out."
+      />
+      <ProcessCard
+        title="4. Feedback"
+        text="Your feedback is invaluable. I present the design work to you for your input. I'm dedicated to collaboration and will make revisions as necessary to ensure the final product aligns perfectly with your artistic vision."
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-container {
+    width: 200%;
+  }
+</style>
+
+<script>
+  import { $ } from "@/consts/dom-selector";
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const memberContainer = $(".process-container");
+  const sections = gsap.utils.toArray(".process-container .process");
+
+  let scrollTween = gsap.to(sections, {
+    xPercent: -75 * (sections.length - 1),
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#process",
+      pin: true,
+      scrub: 1,
+      end: "+4500",
+    },
+  });
+</script>
