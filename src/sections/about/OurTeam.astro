@@ -4,36 +4,81 @@ import projectImage from "@/assets/project.webp";
 ---
 
 <section id="our-team" class="px-8 lg:px-16">
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-4 pb-16">
     <div class="text-white font-medium text-sm md:text-base uppercase">
       <span class="mr-2">•</span>Our Team
     </div>
   </div>
-  <div class="overflow-x-hidden relative">
-    <div
-      class="flex w-[200vw] gap-8 mt-16 border-b border-[var(--color-primary)] pb-0 md:pb-12 member-container"
-    >
-      {
-        Array.from({ length: 4 }, (_, index) => (
-          <div class="member flex flex-col gap-2" id={`team-member-${index}`}>
-            <Image
-              src={projectImage}
-              alt="Team Member Image"
-              width={300}
-              height={200}
-              class:list={["w-full", "object-cover"]}
-            />
-            <div class="flex justify-between items-center">
-              <h4 class="text-base text-[var(--color-primary)]">
-                Team Member Name
-              </h4>
-            </div>
-            <p class="text-xs md:text-sm text-[var(--color-primary)]">
-              Team Member Role/Description
-            </p>
-          </div>
-        ))
-      }
+  <div class="flex w-full justify-end pr-24">
+    <div class="flex w-2/3 gap-24 justify-end">
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col">
+          <h3 class="text-xl font-medium text-[var(--color-primary)]">
+            Xavier Illas
+          </h3>
+          <p class="text-base font-thin text-[var(--color-primary)]">
+            Creative Director, Founder.
+          </p>
+        </div>
+        <div class="flex flex-col">
+          <h3 class="text-xl font-medium text-[var(--color-primary)]">
+            Alfred Concise
+          </h3>
+          <p class="text-base font-thin text-[var(--color-primary)]">
+            Senior Designer
+          </p>
+        </div>
+        <div class="flex flex-col">
+          <h3 class="text-xl font-medium text-[var(--color-primary)]">
+            Bruce Fields
+          </h3>
+          <p class="text-base font-thin text-[var(--color-primary)]">
+            Senior Designer
+          </p>
+        </div>
+        <div class="flex flex-col">
+          <h3 class="text-xl font-medium text-[var(--color-primary)]">
+            Dylan Cox
+          </h3>
+          <p class="text-base font-thin text-[var(--color-primary)]">
+            Photo/Video
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4">
+        <div class="flex-col">
+          <h3 class="text-xl font-medium text-[var(--color-primary)]">
+            Xavier Illas
+          </h3>
+          <p class="text-base font-thin text-[var(--color-primary)]">
+            Creative Director, Founder.
+          </p>
+        </div>
+        <div class="flex-col">
+          <h3 class="text-xl font-medium text-[var(--color-primary)]">
+            Alfred Concise
+          </h3>
+          <p class="text-base font-thin text-[var(--color-primary)]">
+            Senior Designer
+          </p>
+        </div>
+        <div class="flex-col">
+          <h3 class="text-xl font-medium text-[var(--color-primary)]">
+            Bruce Fields
+          </h3>
+          <p class="text-base font-thin text-[var(--color-primary)]">
+            Senior Designer
+          </p>
+        </div>
+        <div class="flex-col">
+          <h3 class="text-xl font-medium text-[var(--color-primary)]">
+            Dylan Cox
+          </h3>
+          <p class="text-base font-thin text-[var(--color-primary)]">
+            Photo/Video
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -47,24 +92,3 @@ import projectImage from "@/assets/project.webp";
     width: calc(50vw - 5.5rem);
   }
 </style>
-
-<script>
-  import { $ } from "@/consts/dom-selector";
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
-
-  const memberContainer = $(".member-container");
-  const sections = gsap.utils.toArray(".member-container .member");
-
-  let scrollTween = gsap.to(sections, {
-    xPercent: -75 * (sections.length - 1),
-    ease: "none",
-    scrollTrigger: {
-      trigger: "#our-team",
-      pin: true,
-      scrub: 1,
-      end: "+2000",
-    },
-  });
-</script>

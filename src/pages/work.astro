@@ -1,0 +1,17 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Contact from "@/sections/Contact.astro";
+import Hero from "@/sections/Hero.astro";
+import Works from "@/components/Works.jsx";
+---
+
+<Layout
+  title="About Us - Lowton Advertising"
+  description="About Lowton Advertising. Experts in mixing the rational and the emotional to offer the most innovative and imaginative solutions to help your brand grow."
+>
+  <main class="space-y-24">
+    <Hero />
+    <Works client:load />
+    <Contact subtitle="Have a project in mind?" title="Let's work together" />
+  </main>
+</Layout>

@@ -15,23 +15,27 @@ import ProcessCard from "@/components/ProcessCard.astro";
   </div>
   <div class="overflow-x-hidden relative">
     <div
-      class="flex gap-8 mt-12 pb-12 border-b border-[var(--color-primary)] process-container"
+      class="flex gap-16 mt-12 pb-12 border-b border-[var(--color-primary)] process-container"
     >
       <ProcessCard
         title="1. Request Project"
-        text="It all starts with your project request. I listen carefully to understand what you need and your ideas. Your ideas are my inspiration, and understanding your goals is my top priority."
+        text="It all starts with your project request. We listen carefully to understand what you need and your ideas. Your ideas are my inspiration, and understanding your goals is my top priority."
       />
       <ProcessCard
         title="2. Strategy Session"
-        text="In this step, creativity takes center stage. I delve into brainstorming sessions to conceptualize your project. This is where I explore innovative solutions and artistic approaches to bring your vision to life."
+        text="In this step, creativity takes center stage. We delve into brainstorming sessions to conceptualize your project. This is where we explore innovative solutions and artistic approaches to bring your vision to life."
       />
       <ProcessCard
         title="3. Design & Development"
-        text="With a clear concept in mind, we move to the design phase. This is where I weave together visual elements, user-friendly interfaces, and all the creative components that will make your project stand out."
+        text="With a clear concept in mind, we move to the design phase. This is where we weave together visual elements, user-friendly interfaces, and all the creative components that will make your project stand out."
       />
       <ProcessCard
         title="4. Feedback"
-        text="Your feedback is invaluable. I present the design work to you for your input. I'm dedicated to collaboration and will make revisions as necessary to ensure the final product aligns perfectly with your artistic vision."
+        text="Your feedback is invaluable. We present the design work to you for your input. We're dedicated to collaboration and will make revisions as necessary to ensure the final product aligns perfectly with your artistic vision."
+      />
+      <ProcessCard
+        title="5. Launch"
+        text="After your approval, it's time to release your project to the world. We handle all the technical details, ensuring a seamless launch. Your project is introduced to the public, where it will inspire and engage."
       />
     </div>
   </div>
@@ -39,7 +43,7 @@ import ProcessCard from "@/components/ProcessCard.astro";
 
 <style>
   .process-container {
-    width: 200%;
+    width: 250%;
   }
 </style>
 
@@ -53,7 +57,7 @@ import ProcessCard from "@/components/ProcessCard.astro";
   const sections = gsap.utils.toArray(".process-container .process");
 
   let scrollTween = gsap.to(sections, {
-    xPercent: -75 * (sections.length - 1),
+    xPercent: -85 * (sections.length - 1),
     ease: "none",
     scrollTrigger: {
       trigger: "#process",
