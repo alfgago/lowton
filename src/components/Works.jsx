@@ -74,7 +74,7 @@ const Works = () => {
         {getProjectsForPage().map((project, idx) => (
           <div key={idx} className="col-span-1 flex flex-col gap-2">
             <img
-              src="src/assets/project.webp"
+              src="/img/projects/project.webp"
               alt="work image"
               width={300}
               height={200}
