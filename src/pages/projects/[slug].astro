@@ -8,6 +8,7 @@ import gql from "graphql-tag";
 
 import type { Project } from "@/consts/projects";
 import MediaProject from "@/components/MediaProject.astro";
+import ContactNoForm from "@/components/ContactNoForm.astro";
 
 export function getStaticPaths() {
   return [{ params: { slug: "adidas-f50" } }];
@@ -112,5 +113,6 @@ export const prerender = true;
       about={project.aboutProject.html}
     />
     <MediaProject components={project.components} />
+	<ContactNoForm />
   </main>
 </Layout>

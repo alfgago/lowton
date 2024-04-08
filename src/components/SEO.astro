@@ -11,15 +11,9 @@ const {
 	canonical,
 } = Astro.props as Props
 
-console.log('Astro.site:', Astro.site);
-console.log('Astro.url.pathname:', Astro.url.pathname);
-console.log('canonical:', canonical); 
-
 const canonicalURL = canonical 
    ? new URL(canonical, Astro.site) 
    : new URL(Astro.url.pathname, Astro.site)
-
-console.log(canonicalURL)
 ---
 <title>{title}</title>
 
