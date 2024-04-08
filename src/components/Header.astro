@@ -46,7 +46,7 @@ const pages = [
 					<a
 						class:list={[
 							"underline-transition transform duration-300 text-xl",
-							{ "active": link.active },
+							{ "active": link.active }
 						]}
 						href={link.href}
 						aria-label={link.label}
@@ -93,7 +93,8 @@ const pages = [
 <script>
 	import { $ } from "@/consts/dom-selector";
 
-	const navbar = $("#header-nav");
+	document.addEventListener("astro:page-load", () => {
+		const navbar = $("#header-nav");
 
 	window.onwheel = (e) => {
 		if (e.deltaY > 0) {
@@ -110,4 +111,5 @@ const pages = [
 	}
 
 	window.addEventListener("scroll", handleScroll);
+	})
 </script>
