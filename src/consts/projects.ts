@@ -1,27 +1,38 @@
-interface Project {
-    id: string;
-    title: string;
-    description: string;
-    client: string;
-    year: number;
-    services: string[];
+export interface Image {
     url: string;
+    width: number;
+    height: number;
+    alt: string | null;
+  }
+  
+  export interface Category {
+    id: string;
+    name: string;
+  }
+  
+  export interface Component {
+    id: string;
+    type: string | null;
+    image?: Image;
+    images?: Image[];
+    columns?: number; 
+  }
+  
+  export interface AboutProject {
+    html: string; 
+  }
+  
+  export interface Project {
+    name: string;
+    slug: string;
     industry: string;
-    duration: string;
-    about: string;
-}
-
-export const PROJECTS: Project[] = [
-    {
-        id: "proyecto-ejemplo",
-        title: "Proyecto Ejemplo",
-        description: "Descripción del Proyecto",
-        client: "Client Name",
-        year: 2022,
-        services: ["UI/UX Design", "Web Development", "Graphic Design"],
-        url: "https://example.com",
-        industry: "Industry",
-        duration: "Duration",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia diam id erat sodales varius. Curabitur ac consectetur massa. Phasellus nisl eros, aliquam non erat et, commodo venenatis neque. Nunc consequat pharetra dapibus. Ut posuere, diam nec ultricies rutrum, elit mauris faucibus elit, sed tempor orci mauris a leo. Aenean ut magna tempus sapien euismod faucibus."
-    }
-]
+    videoUrl: string | null;
+    year: number;
+    client: string;
+    shortIntro: string;
+    aboutProject: AboutProject;
+    category: Category[];
+    components: Component[];
+    featuredImage: Image;
+  }
+  

@@ -1,0 +1,32 @@
+---
+import type { Component } from "@/consts/projects";
+import ImageDisplay from "./ImageDisplay.astro";
+import VideoDisplay from "./VideoDisplay.astro";
+import GridDisplay from "./GridDisplay.astro";
+
+const { components } = Astro.props;
+
+const projectComponents = {
+  video: components.filter((c: Component) => c.type === "Video"),
+  image: components.filter((c: Component) => c.type === "SingleImage"),
+  grid: components.filter((c: Component) => c.type === "Grid"),
+};
+---
+
+<section id="media-project" class="px-8 lg:px-16">
+  {
+    projectComponents.image.length > 0 && (
+      <ImageDisplay component={projectComponents.image} />
+    )
+  }
+  {
+    projectComponents.video.length > 0 && (
+      <VideoDisplay component={projectComponents.video} />
+    )
+  }
+  {
+    projectComponents.grid.length > 0 && (
+      <GridDisplay component={projectComponents.grid} />
+    )
+  }
+</section>

@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import projectImage from "@/assets/project.webp";
+import { BRANDS } from "@/consts/brands";
+
+const availableLogosWidth = "1135px";
 ---
 
 <section id="brands" class="px-8 lg:px-16">
@@ -21,13 +23,13 @@ import projectImage from "@/assets/project.webp";
       class="flex gap-8 flex-nowrap animate-infinite-scroll slide-track data-cursor"
     >
       {
-        Array.from({ length: 8 }, (_, index) => (
-          <div class="w-[270px]" id={`logo-${index}`}>
+        BRANDS.slice(0, 20).map((brand) => (
+          <div class="logo">
             <Image
-              src={projectImage}
-              alt="Logo Client Image"
-              width={270}
-              height={270}
+              src={`/img/brands/${brand.id}.webp`}
+              alt={`${brand.name}'s Logo'`}
+              width={673}
+              height={673}
               class:list={["w-full", "object-cover", "aspect-square"]}
             />
           </div>
@@ -42,13 +44,13 @@ import projectImage from "@/assets/project.webp";
       class="flex gap-8 flex-nowrap animate-infinite-scroll-reverse slide-track data-cursor"
     >
       {
-        Array.from({ length: 8 }, (_, index) => (
-          <div class="w-[270px]" id={`logo-${index}`}>
+        BRANDS.slice(20, 40).map((brand) => (
+          <div class="logo">
             <Image
-              src={projectImage}
-              alt="Logo Client Image"
-              width={270}
-              height={270}
+              src={`/img/brands/${brand.id}.webp`}
+              alt={`${brand.name}'s Logo'`}
+              width={673}
+              height={673}
               class:list={["w-full", "object-cover", "aspect-square"]}
             />
           </div>
@@ -58,8 +60,14 @@ import projectImage from "@/assets/project.webp";
   </div>
 </section>
 
-<style>
+<style define:vars={{ availableLogosWidth }}>
+  .logo {
+    width: calc(calc(var(--availableLogosWidth) - (5 - 1) * 2rem) / 5);
+  }
+
   .slide-track {
-    width: calc(270px * 8);
+    width: calc(
+      20 * calc(calc(var(--availableLogosWidth) - (5 - 1) * 2rem) / 5)
+    );
   }
 </style>

@@ -20,10 +20,10 @@ export default {
       keyframes: {
         "infinite-scroll": {
           from: { transform: "translateX(0)" },
-          to: { transform: "translateX(calc(-270px * 4))" },
+          to: { transform: "translateX(calc(-50% - 0.5rem))" },
         },
         "infinite-scroll-reverse": {
-          from: { transform: "translateX(calc(-270px * 4))" },
+          from: { transform: "translateX(calc(-50% - 0.5rem))" },
           to: { transform: "translateX(0)" },
         },
         "accordion-down": {

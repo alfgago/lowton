@@ -1,0 +1,24 @@
+---
+const { component } = Astro.props;
+
+import type { Component } from "@/consts/projects";
+---
+
+{
+  component.length === 1
+    ? component.map((c: Component) => (
+        <div class="flex flex-col gap-8">
+          <div class="w-full">
+            <img
+              width={c.image?.width}
+              height={c.image?.height}
+              transition:name="project"
+              class:list={["w-full object-cover aspect-video"]}
+              alt={`"${c.image?.alt}"`}
+              src={c.image?.url}
+            />
+          </div>
+        </div>
+      ))
+    : ""
+}

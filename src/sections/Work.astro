@@ -1,7 +1,75 @@
 ---
 import { Image } from "astro:assets";
 import projectImage from "@/assets/project.webp";
-import { PROJECTS } from "@/consts/projects";
+import type { Project } from "@/consts/projects";
+import client from "@/lib/apollo-client";
+import { gql } from "@apollo/client/core";
+
+const PROJECTS = gql`
+  query Projects {
+    projects {
+      name
+      slug
+      industry
+      videoUrl
+      year
+      client
+      shortIntro
+      aboutProject {
+        html
+      }
+      category {
+        ... on Category {
+          id
+          name
+        }
+      }
+      components {
+        ... on Video {
+          id
+          type
+          url
+        }
+        ... on SingleImage {
+          id
+          type
+          image {
+            url
+            width
+            height
+            alt
+          }
+        }
+        ... on Grid {
+          id
+          type
+          images {
+            url
+            width
+            height
+            alt
+          }
+          columns
+        }
+      }
+      featuredImage {
+        url
+        width
+        height
+        alt
+      }
+    }
+  }
+`;
+
+const { data } = await client.query({
+  query: PROJECTS,
+});
+
+const projects: Project[] = data.projects;
+projects.map((project: any) => {
+  console.log(project);
+});
 ---
 
 <section id="work" class="px-8 lg:px-16">
@@ -21,16 +89,16 @@ import { PROJECTS } from "@/consts/projects";
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
     {
-      PROJECTS.map((project) => (
+      projects.map((project: any) => (
         <div class="rounded-md">
-          <a href={`/projects/${project.id}`}>
+          <a href={`/projects/${project.slug}`}>
             <Image
               transition:name="project"
               class:list={["w-full object-cover h-full"]}
               width="300"
               height="200"
-              alt={`Imagen de ${project.title}`}
-              src={`/img/projects/${project.id}.webp`}
+              alt={`Imagen de ${project.featuredImage.alt}`}
+              src={project.featuredImage.url}
             />
           </a>
         </div>

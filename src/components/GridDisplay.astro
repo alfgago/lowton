@@ -1,0 +1,22 @@
+---
+const { component } = Astro.props;
+
+import type { Component, Image } from "@/consts/projects";
+let [images] = component.map((c: Component) => c.images);
+---
+
+<div class="grid grid-cols-2 gap-8 mt-16 pb-12">
+  {
+    images.map((i: Image) => (
+      <div class="col-span-1 flex flex-col gap-2">
+        <img
+          src={i.url}
+          alt={`"${i.alt}"`}
+          width={i.url}
+          height={i.height}
+          class="w-full object-cover aspect-square"
+        />
+      </div>
+    ))
+  }
+</div>
