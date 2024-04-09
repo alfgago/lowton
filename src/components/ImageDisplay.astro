@@ -4,20 +4,20 @@ const { component } = Astro.props;
 import type { Component } from "@/consts/projects";
 ---
 
-{
-  component.length === 1
-    ? component.map((c: Component) => (
-        <div class="flex flex-col gap-8">
-          <div class="w-full">
-            <img
-              width={c.image?.width}
-              height={c.image?.height}
-              class:list={["w-full object-cover aspect-video"]}
-              alt={`"${c.image?.alt}"`}
-              src={c.image?.url}
-            />
-          </div>
-        </div>
-      ))
-    : ""
-}
+<div class="flex flex-col gap-8">
+	{
+		component.map((c: Component) => (
+			<div class="w-full">
+				<img
+					loading="lazy"
+					decoding="async"
+					width={c.image?.width || 1200}
+					height={c.image?.height || 800}
+					class:list={["w-full object-cover aspect-video"]}
+					alt={`"${c.image?.alt}"`}
+					src={c.image?.url || "/img/projects/project.webp"}
+				/>
+			</div>
+		))
+	}
+</div>

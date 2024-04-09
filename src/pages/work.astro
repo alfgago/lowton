@@ -6,12 +6,16 @@ import Works from "@/components/Works.jsx";
 ---
 
 <Layout
-  title="About Us - Lowton Advertising"
-  description="About Lowton Advertising. Experts in mixing the rational and the emotional to offer the most innovative and imaginative solutions to help your brand grow."
+	title="About Us - Lowton Advertising"
+	description="About Lowton Advertising. Experts in mixing the rational and the emotional to offer the most innovative and imaginative solutions to help your brand grow."
 >
-  <main class="space-y-24">
-    <Hero />
-    <Works client:load />
-    <Contact subtitle="Have a project in mind?" title="Let's work together" />
-  </main>
+	<main class="space-y-24">
+		<Hero
+			title="Latest projects & case studies"
+			className="items-center lg:items-center"
+			textClass="md:text-[7vw]"
+		/>
+		<Works client:load />
+		<Contact subtitle="Have a project in mind?" title="Let's work together" />
+	</main>
 </Layout>

@@ -1,177 +1,111 @@
 ---
 import { Image } from "astro:assets";
-import projectImage from "@/assets/project.webp";
 import type { Project } from "@/consts/projects";
 import client from "@/lib/apollo-client";
 import { gql } from "@apollo/client/core";
 
 const PROJECTS = gql`
-  query Projects {
-    projects {
-      name
-      slug
-      industry
-      videoUrl
-      year
-      client
-      shortIntro
-      aboutProject {
-        html
-      }
-      category {
-        ... on Category {
-          id
-          name
-        }
-      }
-      components {
-        ... on Video {
-          id
-          type
-          url
-        }
-        ... on SingleImage {
-          id
-          type
-          image {
-            url
-            width
-            height
-            alt
-          }
-        }
-        ... on Grid {
-          id
-          type
-          images {
-            url
-            width
-            height
-            alt
-          }
-          columns
-        }
-      }
-      featuredImage {
-        url
-        width
-        height
-        alt
-      }
-    }
-  }
+	query Projects {
+		projects {
+			name
+			slug
+			industry
+			videoUrl
+			year
+			client
+			shortIntro
+			aboutProject {
+				html
+			}
+			category {
+				... on Category {
+					id
+					name
+				}
+			}
+			components {
+				... on Video {
+					id
+					type
+					url
+				}
+				... on SingleImage {
+					id
+					type
+					image {
+						url
+						width
+						height
+						alt
+					}
+				}
+				... on Grid {
+					id
+					type
+					images {
+						url
+						width
+						height
+						alt
+					}
+					columns
+				}
+			}
+			featuredImage {
+				url
+				width
+				height
+				alt
+			}
+		}
+	}
 `;
 
 const { data } = await client.query({
-  query: PROJECTS,
+	query: PROJECTS,
 });
 
 const projects: Project[] = data.projects;
 ---
 
 <section id="work" class="px-8 lg:px-16">
-  <div
-    class="w-full flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between"
-  >
-    <div class="md:w-1/2 text-white font-medium text-sm">
-      <p>Based in Sarasota, Florida</p>
-      <p>and Working Worldwide.</p>
-    </div>
-    <div
-      class="md:w-1/2 text-white font-medium text-sm md:text-right text-balance mb-10 md:mb-24"
-    >
-      <p>Renew, create, update and improve to get attention.</p>
-      <p>Strategy, Design & Development.</p>
-    </div>
-  </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-    {
-      projects.map((project: any) => (
-        <div class="rounded-md">
-          <a href={`/projects/${project.slug}`}>
-            <Image
-              transition:name="project"
-              class:list={["w-full object-cover h-full"]}
-              width="300"
-              height="200"
-              alt={`Imagen de ${project.featuredImage.alt}`}
-              src={project.featuredImage.url}
-            />
-          </a>
-        </div>
-      ))
-    }
-    <div class="rounded-md">
-      <Image
-        src={projectImage}
-        alt="work image"
-        width={300}
-        height={200}
-        class:list={["w-full", "object-cover", "h-full"]}
-      />
-    </div>
-    <div class="rounded-md">
-      <Image
-        src={projectImage}
-        alt="work image"
-        width={300}
-        height={200}
-        class:list={["w-full", "object-cover", "h-full"]}
-      />
-    </div>
-    <div class="rounded-md">
-      <Image
-        src={projectImage}
-        alt="work image"
-        width={300}
-        height={200}
-        class:list={["w-full", "object-cover", "h-full"]}
-      />
-    </div>
-    <div class="rounded-md">
-      <Image
-        src={projectImage}
-        alt="work image"
-        width={300}
-        height={200}
-        class:list={["w-full", "object-cover", "h-full"]}
-      />
-    </div>
-    <div class="rounded-md">
-      <Image
-        src={projectImage}
-        alt="work image"
-        width={300}
-        height={200}
-        class:list={["w-full", "object-cover", "h-full"]}
-      />
-    </div>
-    <div class="rounded-md">
-      <Image
-        src={projectImage}
-        alt="work image"
-        width={300}
-        height={200}
-        class:list={["w-full", "object-cover", "h-full"]}
-      />
-    </div>
-    <div class="rounded-md">
-      <Image
-        src={projectImage}
-        alt="work image"
-        width={300}
-        height={200}
-        class:list={["w-full", "object-cover", "h-full"]}
-      />
-    </div>
-    <div class="rounded-md">
-      <Image
-        src={projectImage}
-        alt="work image"
-        width={300}
-        height={200}
-        class:list={["w-full", "object-cover", "h-full"]}
-      />
-    </div>
-  </div>
+	<div
+		class="w-full flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between"
+	>
+		<div class="md:w-1/2 text-white font-medium text-sm">
+			<p>Based in Sarasota, Florida</p>
+			<p>and Working Worldwide.</p>
+		</div>
+		<div
+			class="md:w-1/2 text-white font-medium text-sm md:text-right text-balance mb-10 md:mb-24"
+		>
+			<p>Renew, create, update and improve to get attention.</p>
+			<p>Strategy, Design & Development.</p>
+		</div>
+	</div>
+	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+		{
+			projects.slice(0, 9).map((project: any) => (
+				<div class="col-span-1 overflow-hidden">
+					<a href={`/projects/${project.slug}`} class="relative group">
+						<Image
+							transition:name="project"
+							class:list={[
+								"w-full object-cover h-full aspect-square group-hover:scale-105 transition-all duration-1000 ease-expo pointer-events-none",
+							]}
+							width="300"
+							height="200"
+							alt=""
+							src={
+								project.featuredImage?.url ||
+								project.components[0]?.image?.url ||
+								project.components?.[0]?.images?.[0]?.url ||
+								"/img/projects/project.webp"
+							}
+						/>
+					</a>
+				</div>
+			))
+		}
+	</div>
 </section>

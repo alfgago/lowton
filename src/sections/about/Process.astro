@@ -3,67 +3,82 @@ import ProcessCard from "@/components/ProcessCard.astro";
 ---
 
 <section id="process" class="px-8 lg:px-16">
-  <div class="flex flex-col gap-4">
-    <div class="text-white font-medium text-sm md:text-base uppercase">
-      <span class="mr-2">•</span>Process
-    </div>
-    <div
-      class="text-white font-medium text-4xl sm:text-5xl md:text-7xl uppercase"
-    >
-      <h3>How It Works</h3>
-    </div>
-  </div>
-  <div class="overflow-x-hidden relative">
-    <div
-      class="flex gap-16 mt-12 pb-12 border-b border-[var(--color-primary)] process-container"
-    >
-      <ProcessCard
-        title="1. Request Project"
-        text="It all starts with your project request. We listen carefully to understand what you need and your ideas. Your ideas are my inspiration, and understanding your goals is my top priority."
-      />
-      <ProcessCard
-        title="2. Strategy Session"
-        text="In this step, creativity takes center stage. We delve into brainstorming sessions to conceptualize your project. This is where we explore innovative solutions and artistic approaches to bring your vision to life."
-      />
-      <ProcessCard
-        title="3. Design & Development"
-        text="With a clear concept in mind, we move to the design phase. This is where we weave together visual elements, user-friendly interfaces, and all the creative components that will make your project stand out."
-      />
-      <ProcessCard
-        title="4. Feedback"
-        text="Your feedback is invaluable. We present the design work to you for your input. We're dedicated to collaboration and will make revisions as necessary to ensure the final product aligns perfectly with your artistic vision."
-      />
-      <ProcessCard
-        title="5. Launch"
-        text="After your approval, it's time to release your project to the world. We handle all the technical details, ensuring a seamless launch. Your project is introduced to the public, where it will inspire and engage."
-      />
-    </div>
-  </div>
+	<div class="flex flex-col gap-4">
+		<div class="text-white font-medium text-sm md:text-base uppercase">
+			<span class="mr-2">•</span>Process
+		</div>
+		<div
+			class="text-white font-medium text-4xl sm:text-5xl md:text-7xl uppercase"
+		>
+			<h3>How It Works</h3>
+		</div>
+	</div>
+	<div class="overflow-x-hidden relative">
+		<div
+			class="flex gap-8 md:gap-16 mt-12 pb-12 border-b border-[var(--color-primary)] process-container"
+		>
+			<ProcessCard
+				title="1. Request Project"
+				text="It all starts with your project request. We listen carefully to understand what you need and your ideas. Your ideas are my inspiration, and understanding your goals is my top priority."
+			/>
+			<ProcessCard
+				title="2. Strategy Session"
+				text="In this step, creativity takes center stage. We delve into brainstorming sessions to conceptualize your project. This is where we explore innovative solutions and artistic approaches to bring your vision to life."
+			/>
+			<ProcessCard
+				title="3. Design & Development"
+				text="With a clear concept in mind, we move to the design phase. This is where we weave together visual elements, user-friendly interfaces, and all the creative components that will make your project stand out."
+			/>
+			<ProcessCard
+				title="4. Feedback"
+				text="Your feedback is invaluable. We present the design work to you for your input. We're dedicated to collaboration and will make revisions as necessary to ensure the final product aligns perfectly with your artistic vision."
+			/>
+			<ProcessCard
+				title="5. Launch"
+				text="After your approval, it's time to release your project to the world. We handle all the technical details, ensuring a seamless launch. Your project is introduced to the public, where it will inspire and engage."
+			/>
+		</div>
+	</div>
 </section>
 
 <style>
-  .process-container {
-    width: 250%;
-  }
+	.process-container {
+		width: 500%;
+	}
+
+	@media (min-width: 640px) {
+		.process-container {
+			width: 250%;
+		}
+	}
 </style>
 
 <script>
-  import { $ } from "@/consts/dom-selector";
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
+	import { $ } from "@/consts/dom-selector";
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
 
-  const memberContainer = $(".process-container");
-  const sections = gsap.utils.toArray(".process-container .process");
+	const sections = gsap.utils.toArray(".process-container .process");
 
-  let scrollTween = gsap.to(sections, {
-    xPercent: -85 * (sections.length - 1),
-    ease: "none",
-    scrollTrigger: {
-      trigger: "#process",
-      pin: true,
-      scrub: 1,
-      end: "+4500",
-    },
-  });
+	function updateXPercent() {
+		let xPercent = window.innerWidth < 640 ? -112 : -85;
+		createScrollTween(xPercent);
+	}
+
+	function createScrollTween(xPercent: number) {
+		let scrollTween = gsap.to(sections, {
+			xPercent: xPercent * (sections.length - 1),
+			ease: "none",
+			scrollTrigger: {
+				trigger: "#process",
+				pin: true,
+				scrub: 1,
+				end: "+4500",
+			},
+		});
+	}
+
+	updateXPercent(); // Initial setup
+	window.addEventListener("resize", updateXPercent);
 </script>
