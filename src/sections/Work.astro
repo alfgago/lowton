@@ -89,7 +89,7 @@ const projects: Project[] = data.projects;
 				<div class="col-span-1 overflow-hidden">
 					<a href={`/projects/${project.slug}`} class="relative group">
 						<Image
-							transition:name="project"
+							transition:name={`project-${project.slug}`}
 							class:list={[
 								"w-full object-cover h-full aspect-square group-hover:scale-105 transition-all duration-1000 ease-expo pointer-events-none",
 							]}

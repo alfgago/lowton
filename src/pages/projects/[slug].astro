@@ -109,7 +109,7 @@ export const prerender = true;
 		<div class="px-8 md:px-16 pb-8">
 			<picture class:list={["w-full aspect-video"]}>
 				<Image
-					transition:name="project"
+					transition:name={`project-${project.slug}`}
 					class:list={["w-full object-cover h-full"]}
 					width="300"
 					height="200"
