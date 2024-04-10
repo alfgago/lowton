@@ -13,6 +13,9 @@ export default defineConfig({
 		react(),
 	],
 	output: "hybrid",
+	image: {
+		domains: ["us-east-1-shared-usea1-02.graphassets.com"],
+	  },
 	adapter: vercel(),
 	site: seoConfig.baseURL,
 });

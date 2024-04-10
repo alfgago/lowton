@@ -1,7 +1,8 @@
 ---
 const { component } = Astro.props;
 
-import type { Component, Image } from "@/consts/projects";
+import type { Component } from "@/consts/projects";
+import { Image } from "astro:assets";
 let [images] = component.map((c: Component) => c.images);
 let [columns] = component.map((c: Component) => c.columns);
 ---
@@ -10,15 +11,13 @@ let [columns] = component.map((c: Component) => c.columns);
 	class:list={["grid gap-8 mt-16 pb-12 grid-cols-1", `md:grid-cols-${columns}`]}
 >
 	{
-		images.map((i: Image) => (
+		images.map((i: any) => (
 			<div class="col-span-1 flex flex-col gap-2">
-				<img
-					loading="lazy"
-					decoding="async"
+				<Image
+					inferSize
+					quality="low"
 					src={i.url}
 					alt={`"${i.alt}"`}
-					width={i.url}
-					height={i.height}
 					class="w-full object-cover aspect-square"
 				/>
 			</div>

@@ -10,6 +10,8 @@ import type { Project } from "@/consts/projects";
 import MediaProject from "@/components/MediaProject.astro";
 import ContactNoForm from "@/components/ContactNoForm.astro";
 
+import Featured from "@/sections/Featured.astro";
+
 export async function getStaticPaths() {
 	const { data } = await client.query({
 		query: gql`
@@ -93,12 +95,19 @@ const { data } = await client.query({
 const project: Project = data.project;
 
 export const prerender = true;
+
+let featuredMediaUrls = [];
+if (project.featuredImage?.url) {
+	featuredMediaUrls.push(project.featuredImage.url);
+}
+if (project.videoUrl) {
+	featuredMediaUrls.push(project.videoUrl);
+}
 ---
 
 <Layout
 	title={`${project.name} - Lowton Advertising`}
-	description=`Información acerca del proyecto ${project.name}`
->
+	description=`Información acerca del proyecto ${project.name}`>
 	<main>
 		<ProjectTitle
 			title={project.name}
@@ -106,28 +115,48 @@ export const prerender = true;
 			year={project.year}
 			description={project.shortIntro}
 		/>
-		<div class="px-8 md:px-16 pb-8">
-			<picture class:list={["w-full aspect-video"]}>
-				<Image
-					transition:name={`project-${project.slug}`}
-					class:list={["w-full object-cover h-full"]}
-					width="300"
-					height="200"
-					alt=""
-					src={project.featuredImage?.url ||
-						project.components[0]?.image?.url ||
-						project.components?.[0]?.images?.[0]?.url ||
-						"/img/projects/project.webp"}
-				/>
-			</picture>
-		</div>
-		<AboutProject
-			client={project.client}
-			industry={project.industry}
-			services={project.category.map((category) => category.name)}
-			about={project.aboutProject?.html || ""}
-		/>
-		<MediaProject components={project.components} project={project} />
-		<ContactNoForm />
+		<article id="featured-picture" class="px-8 pb-8">
+			{
+				project.videoUrl ? (
+					<div class="w-full h-full mt-16 aspect-video">
+						<iframe
+							class="w-full h-full object-cover"
+							src={project.videoUrl}
+							allow="autoplay"
+						/>
+					</div>
+				) : (
+					<Image
+						transition:name={`project-${project.slug}`}
+						inferSize
+						class:list={["w-full object-cover h-full aspect-video"]}
+						quality="mid"
+						alt={project.components[0]?.image?.alt || "Featured project image"}
+						src={
+							project.featuredImage?.url ||
+							project.components[0]?.image?.url ||
+							project.components?.[0]?.images?.[0]?.url ||
+							""
+						}
+					/>
+				)
+			}
+		</article>
 	</main>
+	<AboutProject
+		client={project.client}
+		industry={project.industry}
+		services={project.category.map((category) => category.name)}
+		about={project.aboutProject?.html || ""}
+	/>
+	<MediaProject
+		components={project.components}
+		project={project}
+		featuredMediaUrls={featuredMediaUrls}
+	/>
+	<Featured
+		title="Check out some more"
+		border="border-b border-[var(--color-secondary)]"
+	/>
+	<ContactNoForm />
 </Layout>

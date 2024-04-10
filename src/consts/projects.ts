@@ -15,6 +15,7 @@ export interface Image {
     type: string | null;
     image?: Image;
     images?: Image[];
+	url?: string;
     columns?: number; 
   }
   

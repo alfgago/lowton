@@ -2,66 +2,70 @@
 import { Image } from "astro:assets";
 import projectImage from "@/assets/project.webp";
 import CTAButtonGreen from "@/components/CTAButtonGreen.astro";
+
+interface Props {
+	title: string;
+	border: string;
+}
+
+const { title, border } = Astro.props;
 ---
 
 <section id="featured" class="px-8 lg:px-16">
-  <div class="flex flex-col gap-4">
-    <div class="text-white font-medium text-sm md:text-base uppercase">
-      <span class="mr-2">•</span>Portfolio
-    </div>
-    <div
-      class="text-white font-medium text-4xl sm:text-5xl md:text-7xl uppercase"
-    >
-      <h3>Featured Works</h3>
-    </div>
-  </div>
-  <div
-    class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 border-b border-[var(--color-primary)]"
-  >
-    <div class="col-span-1 flex flex-col gap-2">
-      <div class="rounded-md">
-        <Image
-          src={projectImage}
-          alt="work image"
-          width={300}
-          height={200}
-          class:list={["w-full", "object-cover"]}
-        />
-      </div>
-      <div class="flex justify-between items-center">
-        <h4 class="text-base text-[var(--color-primary)]">Travel Bliss</h4>
-        <CTAButtonGreen target="_self" url="#contact" text="View Project" />
-      </div>
-      <p class="text-xs md:text-sm text-[var(--color-primary)]">
-        UI / UX Design • Web Development • Graphic Design
-      </p>
-    </div>
-    <div class="col-span-1 flex flex-col gap-2">
-      <div class="rounded-md">
-        <Image
-          src={projectImage}
-          alt="work image"
-          width={300}
-          height={200}
-          class:list={["w-full", "object-cover"]}
-        />
-      </div>
-      <div class="flex justify-between items-center">
-        <h4 class="text-base text-[var(--color-primary)]">Culinary Craft</h4>
-        <CTAButtonGreen target="_self" url="#contact" text="View Project" />
-      </div>
-      <p class="text-xs md:text-sm text-[var(--color-primary)]">
-        UI / UX Design • Web Development
-      </p>
-    </div>
-  </div>
+	<div class="flex flex-col gap-4">
+		<div class="text-white font-medium text-sm md:text-base uppercase">
+			<span class="mr-2">•</span>Portfolio
+		</div>
+		<div
+			class="text-white font-medium text-4xl sm:text-5xl md:text-7xl uppercase">
+			<h3>{title}</h3>
+		</div>
+	</div>
+	<div class:list={[border, "grid grid-cols-1 md:grid-cols-2 gap-8 mt-16"]}>
+		<div class="col-span-1 flex flex-col gap-2">
+			<div class="rounded-md">
+				<Image
+					src={projectImage}
+					alt="work image"
+					width={300}
+					height={200}
+					class:list={["w-full", "object-cover"]}
+				/>
+			</div>
+			<div class="flex justify-between items-center">
+				<h4 class="text-base text-[var(--color-primary)]">Travel Bliss</h4>
+				<CTAButtonGreen target="_self" url="#contact" text="View Project" />
+			</div>
+			<p class="text-xs md:text-sm text-[var(--color-primary)]">
+				UI / UX Design • Web Development • Graphic Design
+			</p>
+		</div>
+		<div class="col-span-1 flex flex-col gap-2">
+			<div class="rounded-md">
+				<Image
+					src={projectImage}
+					alt="work image"
+					width={300}
+					height={200}
+					class:list={["w-full", "object-cover"]}
+				/>
+			</div>
+			<div class="flex justify-between items-center">
+				<h4 class="text-base text-[var(--color-primary)]">Culinary Craft</h4>
+				<CTAButtonGreen target="_self" url="#contact" text="View Project" />
+			</div>
+			<p class="text-xs md:text-sm text-[var(--color-primary)]">
+				UI / UX Design • Web Development
+			</p>
+		</div>
+	</div>
 </section>
 
 <style>
-  #featured {
-    margin-top: 3rem !important;
-  }
-  #featured > div:nth-child(2) {
-    padding-bottom: 3rem !important;
-  }
+	#featured {
+		margin-top: 3rem !important;
+	}
+	#featured > div:nth-child(2) {
+		padding-bottom: 3rem !important;
+	}
 </style>

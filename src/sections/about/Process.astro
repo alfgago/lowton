@@ -54,7 +54,6 @@ import ProcessCard from "@/components/ProcessCard.astro";
 </style>
 
 <script>
-	import { $ } from "@/consts/dom-selector";
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	gsap.registerPlugin(ScrollTrigger);
@@ -72,9 +71,11 @@ import ProcessCard from "@/components/ProcessCard.astro";
 			ease: "none",
 			scrollTrigger: {
 				trigger: "#process",
+				start: "bottom bottom",
+				markers: true,
+				end: "+4500",
 				pin: true,
 				scrub: 1,
-				end: "+4500",
 			},
 		});
 	}

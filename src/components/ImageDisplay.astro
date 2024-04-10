@@ -2,20 +2,21 @@
 const { component } = Astro.props;
 
 import type { Component } from "@/consts/projects";
+import { Image } from "astro:assets";
 ---
 
 <div class="flex flex-col gap-8">
 	{
 		component.map((c: Component) => (
 			<div class="w-full">
-				<img
-					loading="lazy"
-					decoding="async"
-					width={c.image?.width || 1200}
-					height={c.image?.height || 800}
-					class:list={["w-full object-cover aspect-video"]}
+				<Image
+					inferSize
+					width={1200}
+					height={800}
+					quality="mid"
+					class:list={["w-full object-cover aspect-square md:aspect-video"]}
 					alt={`"${c.image?.alt}"`}
-					src={c.image?.url || "/img/projects/project.webp"}
+					src={c.image?.url || c.images?.[0]?.url || ""}
 				/>
 			</div>
 		))

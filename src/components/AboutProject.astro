@@ -1,63 +1,80 @@
 ---
 import CTAButton from "./CTAButton.astro";
+import { hasContent, isEmpty } from "../lib/utils";
 
 interface Props {
-  client: string;
-  industry: string;
-  services: string[];
-  about: string;
+	client: string;
+	industry: string;
+	services: string[];
+	about: string;
 }
 
 const { client, industry, services, about } = Astro.props;
+
+console.log(services);
 ---
 
 <section id="about-project" class="px-8 lg:px-16 pb-8">
-  <div
-    class="text-white font-medium text-sm md:text-base uppercase py-8 border-t border-[var(--color-secondary)]"
-  >
-    <span class="mr-2">•</span>About the Project
-  </div>
-  <div class="flex gap-8">
-    <div class="w-3/5">
-      <div
-        class="text-white text-xl font-normal text-balance"
-        set:html={about}
-      />
-    </div>
-    <div class="flex flex-col gap-8">
-      <div class="flex flex-col gap-2">
-        <p class="text-white text-base font-medium">Client</p>
-        <p class="text-[var(--color-secondary)] text-base font-normal">
-          {client}
-        </p>
-      </div>
-      <div class="flex flex-col gap-2">
-        <p class="text-white text-base font-medium">Services</p>
-        <ul>
-          {
-            services.map((service) => (
-              <li class="text-[var(--color-secondary)] text-base font-normal">
-                {service}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <CTAButton target="_self" url="#" text="Visit Website" />
-    </div>
-    <div class="flex flex-col gap-8">
-      <div class="flex flex-col gap-2">
-        <p class="text-white text-base font-medium">Industry</p>
-        <p class="text-[var(--color-secondary)] text-base font-normal">
-          {industry}
-        </p>
-      </div>
-      <div class="flex flex-col gap-2">
-        <p class="text-white text-base font-medium">Duration</p>
-        <p class="text-[var(--color-secondary)] text-base font-normal">
-          Duration
-        </p>
-      </div>
-    </div>
-  </div>
+	<div
+		class="text-white font-medium text-sm md:text-base uppercase py-8 border-t border-[var(--color-secondary)]">
+		<span class="mr-2">•</span>About the Project
+	</div>
+	<div class="flex flex-col sm:flex-row gap-8">
+		{
+			!isEmpty(about) && hasContent(about) && (
+				<div class="w-full sm:w-3/5">
+					<div
+						class="text-white text-sm sm:text-base md:text-xl font-normal text-balance"
+						set:html={about}
+					/>
+				</div>
+			)
+		}
+		<div class="flex flex-col gap-8">
+			{
+				!isEmpty(client) && (
+					<div class="flex flex-col gap-2">
+						<p class="text-white text-sm sm:text-base font-medium">Client</p>
+						<p class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
+							{client}
+						</p>
+					</div>
+				)
+			}
+			{
+				services.length > 0 && (
+					<div class="flex flex-col gap-2">
+						<p class="text-white text-sm sm:text-base font-medium">Services</p>
+						<ul>
+							{services.map((service) => (
+								<li class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
+									{service}
+								</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
+			<!-- <CTAButton target="_self" url="#" text="Visit Website" />  -->
+		</div>
+		<div class="flex flex-col gap-8">
+			{
+				!isEmpty(industry) && (
+					<div class="flex flex-col gap-2">
+						<p class="text-white text-sm sm:text-base font-medium">Industry</p>
+						<p class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
+							{industry}
+						</p>
+					</div>
+				)
+			}
+			<div class="flex flex-col gap-2">
+				<p class="text-white text-sm sm:text-base font-medium">Duration</p>
+				<p
+					class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
+					Duration
+				</p>
+			</div>
+		</div>
+	</div>
 </section>

@@ -1,12 +1,19 @@
 ---
+import type { Component } from "@/consts/projects";
+
 const { project } = Astro.props;
 ---
 
-<div class="w-full h-full mt-16 aspect-video">
-	<iframe
-		class="w-full h-full object-cover"
-		loading="lazy"
-		src={project.videoUrl}
-	>
-	</iframe>
-</div>
+{
+	project.components
+		.filter((c: Component) => c.url)
+		.map((videoComponent: Component) => (
+			<div class="w-full h-full mt-16 aspect-video">
+				<iframe
+					class="w-full h-full object-cover"
+					src={videoComponent.url}
+					allow="autoplay"
+				/>
+			</div>
+		))
+}

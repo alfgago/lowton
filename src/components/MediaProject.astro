@@ -7,27 +7,39 @@ import GridDisplay from "./GridDisplay.astro";
 interface Props {
 	components: Component[];
 	project: Project;
+	featuredMediaUrls: string[];
 }
-const { components, project } = Astro.props;
+const { components, project, featuredMediaUrls } = Astro.props;
 
 const projectComponents = {
-	image: components.filter(
-		(c: Component) => c.type === "SingleImage" || c.image,
-	),
-	grid: components.filter((c: Component) => c.type === "Grid" || c.images),
+	image: components.filter((c: Component) => {
+		if (c.image?.url) {
+			return !featuredMediaUrls.includes(c.image.url);
+		}
+		return false;
+	}),
+	video: components.filter((c: Component) => {
+		if (c.url) {
+			return !featuredMediaUrls.includes(c.url);
+		}
+		return false;
+	}),
+	grid: components.filter((c: Component) => c.images),
 };
 ---
 
 <section id="media-project" class="px-8 lg:px-16">
-	{
-		projectComponents.image.length > 0 && (
-			<ImageDisplay component={projectComponents.image} />
-		)
-	}
-	{project.videoUrl && <VideoDisplay project={project} />}
-	{
-		projectComponents.grid.length > 0 && (
-			<GridDisplay component={projectComponents.grid} />
-		)
-	}
+	<div class="border-b border-[var(--color-secondary)]">
+		{
+			projectComponents.image && projectComponents.image.length > 0 && (
+				<ImageDisplay component={projectComponents.image} />
+			)
+		}
+		{project.videoUrl && <VideoDisplay project={project} />}
+		{
+			projectComponents.grid && projectComponents.grid.length > 0 && (
+				<GridDisplay component={projectComponents.grid} />
+			)
+		}
+	</div>
 </section>
