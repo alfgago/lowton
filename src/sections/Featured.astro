@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
-import projectImage from "@/assets/project.webp";
 import CTAButtonGreen from "@/components/CTAButtonGreen.astro";
+import type { Project } from "@/consts/projects";
+import client from "@/lib/apollo-client";
+import { PROJECTS } from "@/lib/utils";
 
 interface Props {
 	title: string;
@@ -9,6 +11,17 @@ interface Props {
 }
 
 const { title, border } = Astro.props;
+
+const { data } = await client.query({
+	query: PROJECTS,
+});
+
+const projects: Project[] = data.projects;
+
+const randomizedProjects = projects
+	.slice()
+	.sort(() => Math.random() - 0.5)
+	.slice(0, 2);
 ---
 
 <section id="featured" class="px-8 lg:px-16">
@@ -22,42 +35,47 @@ const { title, border } = Astro.props;
 		</div>
 	</div>
 	<div class:list={[border, "grid grid-cols-1 md:grid-cols-2 gap-8 mt-16"]}>
-		<div class="col-span-1 flex flex-col gap-2">
-			<div class="rounded-md">
-				<Image
-					src={projectImage}
-					alt="work image"
-					width={300}
-					height={200}
-					class:list={["w-full", "object-cover"]}
-				/>
-			</div>
-			<div class="flex justify-between items-center">
-				<h4 class="text-base text-[var(--color-primary)]">Travel Bliss</h4>
-				<CTAButtonGreen target="_self" url="#contact" text="View Project" />
-			</div>
-			<p class="text-xs md:text-sm text-[var(--color-primary)]">
-				UI / UX Design • Web Development • Graphic Design
-			</p>
-		</div>
-		<div class="col-span-1 flex flex-col gap-2">
-			<div class="rounded-md">
-				<Image
-					src={projectImage}
-					alt="work image"
-					width={300}
-					height={200}
-					class:list={["w-full", "object-cover"]}
-				/>
-			</div>
-			<div class="flex justify-between items-center">
-				<h4 class="text-base text-[var(--color-primary)]">Culinary Craft</h4>
-				<CTAButtonGreen target="_self" url="#contact" text="View Project" />
-			</div>
-			<p class="text-xs md:text-sm text-[var(--color-primary)]">
-				UI / UX Design • Web Development
-			</p>
-		</div>
+		{
+			randomizedProjects.map((project) => (
+				<div class="col-span-1 flex flex-col gap-2">
+					<a href={`/projects/${project.slug}`} class="relative group">
+						<div class="rounded-md overflow-hidden">
+							<Image
+								transition:name={`project-${project.slug}`}
+								class:list={[
+									"w-full object-cover h-full group-hover:scale-105 transition-all duration-1000 ease-expo pointer-events-none",
+								]}
+								inferSize
+								quality={"mid"}
+								alt={
+									project.components[0]?.image?.alt || "Featured project image"
+								}
+								src={
+									project.featuredImage?.url ||
+									project.components[0]?.image?.url ||
+									project.components?.[0]?.images?.[0]?.url ||
+									"https://us-east-1-shared-usea1-02.graphassets.com/clulsp1wn097s07lh2tvpebkn/clumdqwne8ep008lllmyqpcgg"
+								}
+							/>
+						</div>
+					</a>
+					<div class="flex justify-between items-center">
+						<h4 class="text-base text-[var(--color-primary)]">
+							{project.name}
+						</h4>
+						<CTAButtonGreen
+							target="_self"
+							url={`/projects/${project.slug}`}
+							text="View Project"
+						/>
+					</div>
+					<p class="text-xs md:text-sm text-[var(--color-primary)]">
+						{project.category.map((category) => category.name).join(" • ") ||
+							project.shortIntro}
+					</p>
+				</div>
+			))
+		}
 	</div>
 </section>
 
@@ -67,5 +85,8 @@ const { title, border } = Astro.props;
 	}
 	#featured > div:nth-child(2) {
 		padding-bottom: 3rem !important;
+	}
+	img {
+		aspect-ratio: 1.475 / 1;
 	}
 </style>

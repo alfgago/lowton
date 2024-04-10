@@ -22,7 +22,7 @@ console.log(services);
 	<div class="flex flex-col sm:flex-row gap-8">
 		{
 			!isEmpty(about) && hasContent(about) && (
-				<div class="w-full sm:w-3/5">
+				<div class="w-full">
 					<div
 						class="text-white text-sm sm:text-base md:text-xl font-normal text-balance"
 						set:html={about}
@@ -30,50 +30,56 @@ console.log(services);
 				</div>
 			)
 		}
-		<div class="flex flex-col gap-8">
-			{
-				!isEmpty(client) && (
-					<div class="flex flex-col gap-2">
-						<p class="text-white text-sm sm:text-base font-medium">Client</p>
-						<p class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
-							{client}
-						</p>
-					</div>
-				)
-			}
-			{
-				services.length > 0 && (
-					<div class="flex flex-col gap-2">
-						<p class="text-white text-sm sm:text-base font-medium">Services</p>
-						<ul>
-							{services.map((service) => (
-								<li class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
-									{service}
-								</li>
-							))}
-						</ul>
-					</div>
-				)
-			}
-			<!-- <CTAButton target="_self" url="#" text="Visit Website" />  -->
-		</div>
-		<div class="flex flex-col gap-8">
-			{
-				!isEmpty(industry) && (
-					<div class="flex flex-col gap-2">
-						<p class="text-white text-sm sm:text-base font-medium">Industry</p>
-						<p class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
-							{industry}
-						</p>
-					</div>
-				)
-			}
-			<div class="flex flex-col gap-2">
-				<p class="text-white text-sm sm:text-base font-medium">Duration</p>
-				<p
-					class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
-					Duration
-				</p>
+		<div class="flex gap-16 sm:gap-4 md:gap-0 sm:justify-evenly sm:w-1/2">
+			<div class="flex flex-col gap-8">
+				{
+					!isEmpty(client) && (
+						<div class="flex flex-col gap-2">
+							<p class="text-white text-sm sm:text-base font-medium">Client</p>
+							<p class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
+								{client}
+							</p>
+						</div>
+					)
+				}
+				{
+					services.length > 0 && (
+						<div class="flex flex-col gap-2">
+							<p class="text-white text-sm sm:text-base font-medium">
+								Services
+							</p>
+							<ul>
+								{services.map((service) => (
+									<li class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
+										{service}
+									</li>
+								))}
+							</ul>
+						</div>
+					)
+				}
+				<!-- <CTAButton target="_self" url="#" text="Visit Website" />  -->
+			</div>
+			<div class="flex flex-col gap-8">
+				{
+					!isEmpty(industry) && (
+						<div class="flex flex-col gap-2">
+							<p class="text-white text-sm sm:text-base font-medium">
+								Industry
+							</p>
+							<p class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
+								{industry}
+							</p>
+						</div>
+					)
+				}
+				<div class="flex flex-col gap-2">
+					<p class="text-white text-sm sm:text-base font-medium">Duration</p>
+					<p
+						class="text-[var(--color-secondary)] text-sm sm:text-base font-normal">
+						Duration
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>

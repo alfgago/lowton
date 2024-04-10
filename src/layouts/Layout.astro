@@ -1,11 +1,4 @@
 ---
-interface Props {
-  title: string;
-  description: string;
-  canonical?: string;
-}
-
-const { title, description, canonical } = Astro.props;
 import "@fontsource-variable/inter";
 import Header from "@/components/Header.astro";
 import Cursor from "@/components/Cursor.astro";
@@ -13,49 +6,65 @@ import Footer from "@/sections/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
 import "@/styles/globals.css";
 import SEO from "@/components/SEO.astro";
+
+interface Props {
+	title: string;
+	description: string;
+	canonical?: string;
+}
+
+const { title, description, canonical } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-	<SEO
-	canonical={canonical}
-	description={description}
-	title={title}
-/>
-    <ViewTransitions />
-  </head>
-  <body>
-    <Cursor className="hidden lg:block" />
-    <Header />
-    <slot />
-    <Footer />
-    <style is:global>
-      :root {
-        --color-primary: #00ff18;
-        --color-hover: #00660a;
-        --color-secondary: #ababab;
-        --color-text: #ffffff;
-        --background-color: #0a0a0c;
-      }
+	<head>
+		<SEO canonical={canonical} description={description} title={title} />
+		<ViewTransitions />
+	</head>
+	<body>
+		<Cursor className="hidden lg:block" />
+		<Header />
+		<slot />
+		<Footer />
+		<style is:global>
+			:root {
+				--color-primary: #00ff18;
+				--color-hover: #00660a;
+				--color-secondary: #ababab;
+				--color-text: #ffffff;
+				--background-color: #0a0a0c;
+			}
 
-      html {
-        font-family:
-          "Inter Variable",
-          system-ui,
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          sans-serif;
-      }
+			html {
+				font-family:
+					"Inter Variable",
+					system-ui,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe UI",
+					sans-serif;
+			}
 
-      body {
-        background-color: var(--background-color);
-      }
+			body {
+				background-color: var(--background-color);
+			}
 
-      header {
-        background-color: var(--background-color);
-      }
-    </style>
-  </body>
+			header {
+				background-color: var(--background-color);
+			}
+		</style>
+		<script>
+			import Lenis from "@studio-freight/lenis";
+
+			if (window.innerWidth > 360) {
+				const lenis = new Lenis();
+				function raf(time: any) {
+					lenis.raf(time);
+					requestAnimationFrame(raf);
+				}
+				requestAnimationFrame(raf);
+			}
+		</script>
+	</body>
 </html>

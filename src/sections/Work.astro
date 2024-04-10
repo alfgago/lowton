@@ -70,15 +70,13 @@ const projects: Project[] = data.projects;
 
 <section id="work" class="px-8 lg:px-16">
 	<div
-		class="w-full flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between"
-	>
+		class="w-full flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between">
 		<div class="md:w-1/2 text-white font-medium text-sm">
 			<p>Based in Sarasota, Florida</p>
 			<p>and Working Worldwide.</p>
 		</div>
 		<div
-			class="md:w-1/2 text-white font-medium text-sm md:text-right text-balance mb-10 md:mb-24"
-		>
+			class="md:w-1/2 text-white font-medium text-sm md:text-right text-balance mb-10 md:mb-24">
 			<p>Renew, create, update and improve to get attention.</p>
 			<p>Strategy, Design & Development.</p>
 		</div>
@@ -86,7 +84,7 @@ const projects: Project[] = data.projects;
 	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 		{
 			projects.slice(0, 9).map((project: any) => (
-				<div class="col-span-1 overflow-hidden">
+				<div class="col-span-1 overflow-hidden rounded-lg">
 					<a href={`/projects/${project.slug}`} class="relative group">
 						<Image
 							transition:name={`project-${project.slug}`}
