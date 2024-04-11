@@ -45,7 +45,8 @@ const randomizedProjects = projects
 								class:list={[
 									"w-full object-cover h-full group-hover:scale-105 transition-all duration-1000 ease-expo pointer-events-none",
 								]}
-								inferSize
+								width={project.featuredImage?.width || 500}
+								height={project.featuredImage?.height || 500}
 								quality={"mid"}
 								alt={
 									project.components[0]?.image?.alt || "Featured project image"

@@ -1,0 +1,90 @@
+---
+
+---
+
+<style is:global>
+	@keyframes fade-in {
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes fade-out {
+		to {
+			opacity: 0;
+		}
+	}
+
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		mix-blend-mode: normal;
+		height: 100%;
+		overflow: clip;
+		z-index: 2;
+	}
+
+	::view-transition-group(*) {
+		z-index: 0;
+	}
+
+	::view-transition-old(*) {
+		object-fit: contain;
+	}
+
+	::view-transition-old(root) {
+		opacity: 0;
+		animation: 1000ms cubic-bezier(0.76, 0.32, 0.93, 0.61) 0s 1 normal both
+			running fade-out;
+	}
+
+	::view-transition-new(*) {
+		object-fit: cover;
+		z-index: 2;
+	}
+
+	.project {
+		transition:
+			width 1500ms,
+			height 1500ms;
+	}
+</style>
+
+<script>
+	import { $$ } from "@/consts/dom-selector";
+	document.addEventListener("astro:page-load", () => {
+		const projects = $$(".project");
+
+		projects.forEach((project) => {
+			project.addEventListener("click", function () {
+				// Reset all projects
+				projects.forEach((otherProject) => {
+					otherProject.classList.add(
+						"animate-out",
+						"fade-out",
+						"duration-1000",
+					);
+					otherProject.classList.remove("z-10");
+				});
+
+				// Set class on clicked project
+				project.classList.remove("animate-out", "fade-out", "duration-1000");
+				project.classList.add("z-10");
+			});
+		});
+	});
+</script>
+<!-- 
+width: 1199.33px;
+height: 674.625px;
+transform: matrix(1, 0, 0, 1, 32, 422.667);
+text-orientation: mixed;
+
+writing-mode: horizontal-tb;
+backdrop-filter: none;
+color-scheme: normal;
+mix-blend-mode: normal;
+animation-name: -ua-view-transition-group-anim-project-adidas-f50;
+animation-timing-function: ease;
+animation-delay: 0s;
+animation-iteration-count: 1;
+animation-direction: normal; -->

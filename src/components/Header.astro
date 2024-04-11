@@ -26,31 +26,27 @@ const pages = [
 
 <header
 	id="header-nav"
-	class="sticky top-0 w-full py-4 px-8 lg:px-16 z-50 text-white duration-300 transform"
->
-	<div class="flex max-w-7xl mx-auto items-center justify-between gap-4">
+	class="sticky top-0 w-full py-4 px-8 lg:px-16 z-50 text-white duration-300 transform">
+	<div class="flex items-center justify-between gap-4">
 		<a
 			href="/"
 			class="hover:scale-105 transform duration-300 w-20 md:w-40 z-10"
 			aria-label="Lowton logo"
-			title="Lowton logo"
-		>
+			title="Lowton logo">
 			<img src="/logo.webp" alt="lvda logo" class="w-full" loading="lazy" />
 		</a>
 		<nav
 			id="header-menu"
-			class="flex flex-col fixed md:static w-full inset-0 h-dvh md:h-[initial] md:w-auto bg-[#000000]/90 md:bg-[initial] gap-16 md:gap-8 uppercase text-lg items-center justify-center -translate-y-full transition-transform duration-300 target:translate-y-0 md:flex-row md:translate-y-[initial]"
-		>
+			class="flex flex-col fixed md:static w-full inset-0 h-dvh md:h-[initial] md:w-auto bg-[#000000]/90 md:bg-[initial] gap-16 md:gap-8 uppercase text-lg items-center justify-center -translate-y-full transition-transform duration-300 target:translate-y-0 md:flex-row md:translate-y-[initial]">
 			{
 				pages.map((link) => (
 					<a
 						class:list={[
 							"underline-transition transform duration-300 text-xl",
-							{ "active": link.active }
+							{ active: link.active },
 						]}
 						href={link.href}
-						aria-label={link.label}
-					>
+						aria-label={link.label}>
 						{link.name}
 					</a>
 				))
@@ -96,20 +92,20 @@ const pages = [
 	document.addEventListener("astro:page-load", () => {
 		const navbar = $("#header-nav");
 
-	window.onwheel = (e) => {
-		if (e.deltaY > 0) {
-			navbar?.classList.add("-translate-y-full");
-		} else {
-			navbar?.classList.remove("-translate-y-full");
+		window.onwheel = (e) => {
+			if (e.deltaY > 0) {
+				navbar?.classList.add("-translate-y-full");
+			} else {
+				navbar?.classList.remove("-translate-y-full");
+			}
+		};
+
+		function handleScroll() {
+			let isInTop = window.scrollY === 0;
+			navbar.classList.toggle("bg-transparent", !isInTop);
+			navbar.classList.toggle("bg-transparent", isInTop);
 		}
-	};
 
-	function handleScroll() {
-		let isInTop = window.scrollY === 0;
-		navbar.classList.toggle("bg-transparent", !isInTop);
-		navbar.classList.toggle("bg-transparent", isInTop);
-	}
-
-	window.addEventListener("scroll", handleScroll);
-	})
+		window.addEventListener("scroll", handleScroll);
+	});
 </script>

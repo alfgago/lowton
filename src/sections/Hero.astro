@@ -12,16 +12,14 @@ const { title, className, textClass } = Astro.props;
 	<div
 		class:list={[
 			className,
-			"grid items-center lg:items-end lg:pb-10 mx-auto lg:grid-cols-12 grid-cols-6 select-none hh border-b border-[var(--color-primary)]",
-		]}
-	>
+			"grid items-center lg:items-end mx-auto lg:grid-cols-12 grid-cols-6 select-none hh",
+		]}>
 		<div class="col-span-6 lg:col-span-11">
 			<h1
 				class:list={[
 					textClass,
 					"block overflow-hidden text-[9.5vw] sm:text-[7vw] md:text-[6vw] md:text-wrap uppercase text-balance font-medium leading-none text-white data-cursor tracking-tight",
-				]}
-			>
+				]}>
 				{title}
 			</h1>
 		</div>
@@ -31,22 +29,30 @@ const { title, className, textClass } = Astro.props;
 		.hh {
 			height: calc(100dvh - 70px);
 		}
+
+		#hero {
+			position: sticky;
+			top: 0;
+			z-index: 2;
+		}
 	</style>
 </section>
 
 <script>
 	import SplitType from "split-type";
 	import { gsap } from "gsap";
+	import { $, $$ } from "@/lib/utils";
+	const hero = $("#hero")!;
+	const work = $("#work")!;
 
 	const splitText = document.querySelectorAll<HTMLElement>(".tracking-tight");
 
 	splitText.forEach((word) => {
 		const text = new SplitType(word, { types: "words" });
 
-		// Wrap each word in a span with overflow-hidden
 		text.words?.forEach((word) => {
 			const span = document.createElement("span");
-			span.style.display = "inline-block"; // Maintain inline display
+			span.style.display = "inline-block";
 			span.classList.add("overflow-hidden");
 			word.parentNode?.insertBefore(span, word);
 			span.appendChild(word);
@@ -58,5 +64,14 @@ const { title, className, textClass } = Astro.props;
 			ease: "back.out",
 			duration: 1,
 		});
+	});
+
+	gsap.to(hero, {
+		position: "relative",
+		scrollTrigger: {
+			trigger: work,
+			start: "top top",
+			toggleActions: "play none none reverse",
+		},
 	});
 </script>

@@ -10,9 +10,8 @@ import { Image } from "astro:assets";
 		component.map((c: Component) => (
 			<div class="w-full rounded-xl overflow-hidden">
 				<Image
-					inferSize
-					width={1200}
-					height={800}
+					width={c.image?.width || 1200}
+					height={c.image?.height || 800}
 					quality="mid"
 					class:list={["w-full object-cover"]}
 					alt={`"${c.image?.alt}"`}

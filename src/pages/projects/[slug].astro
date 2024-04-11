@@ -128,7 +128,8 @@ if (project.videoUrl) {
 				) : (
 					<Image
 						transition:name={`project-${project.slug}`}
-						inferSize
+						width={project.featuredImage?.width || 500}
+						height={project.featuredImage?.height || 500}
 						class:list={["w-full object-cover h-full aspect-video"]}
 						quality="mid"
 						alt={project.components[0]?.image?.alt || "Featured project image"}

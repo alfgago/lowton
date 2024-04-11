@@ -6,6 +6,7 @@ import Footer from "@/sections/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
 import "@/styles/globals.css";
 import SEO from "@/components/SEO.astro";
+import Transition from "@/components/Transition.astro";
 
 interface Props {
 	title: string;
@@ -27,6 +28,7 @@ const { title, description, canonical } = Astro.props;
 		<Header />
 		<slot />
 		<Footer />
+		<Transition />
 		<style is:global>
 			:root {
 				--color-primary: #00ff18;
@@ -34,6 +36,7 @@ const { title, description, canonical } = Astro.props;
 				--color-secondary: #ababab;
 				--color-text: #ffffff;
 				--background-color: #0a0a0c;
+				--background-transparent: rgb(10 10 12 / 0.75);
 			}
 
 			html {

@@ -36,4 +36,14 @@ export interface Image {
     components: Component[];
     featuredImage: Image;
   }
+
+  export interface Html {
+	html: string;
+  }
+
+  export interface Testimonial {
+	name: string;
+	text: Html;
+
+  }
   

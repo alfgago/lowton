@@ -16,7 +16,8 @@ let [columns] = component.map((c: Component) => c.columns);
 		images.map((i: any) => (
 			<div class="col-span-1 flex flex-col gap-2 rounded-xl overflow-hidden">
 				<Image
-					inferSize
+					width={i.width || 500}
+					height={i.height || 500}
 					quality="low"
 					src={i.url}
 					alt={`"${i.alt}"`}
