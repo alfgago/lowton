@@ -15,7 +15,7 @@
 		}
 	}
 
-	::view-transition-old(*),
+	/* ::view-transition-old(*),
 	::view-transition-new(*) {
 		mix-blend-mode: normal;
 		height: 100%;
@@ -29,17 +29,39 @@
 
 	::view-transition-old(*) {
 		object-fit: contain;
-	}
-
-	::view-transition-old(root) {
-		opacity: 0;
-		animation: 1000ms cubic-bezier(0.76, 0.32, 0.93, 0.61) 0s 1 normal both
-			running fade-out;
+		animation: none;
 	}
 
 	::view-transition-new(*) {
+		animation: 1000ms cubic-bezier(0.76, 0.32, 0.93, 0.61) 0s 1 normal both
+			running fade-in;
+		opacity: 0;
 		object-fit: cover;
+		position: absolute;
+		inset-block-start: 0px;
+		inline-size: 100%;
+		block-size: auto;
 		z-index: 2;
+	} */
+
+	::view-transition-old(project-adidas-f50),
+	::view-transition-new(project-adidas-f50) {
+		animation: none;
+		mix-blend-mode: normal;
+		height: 100%;
+		overflow: clip;
+		z-index: 2;
+	}
+
+	::view-transition-new(project-adidas-f50) {
+		object-fit: cover;
+	}
+	::view-transition-old(project-adidas-f50) {
+		object-fit: contain;
+	}
+
+	::view-transition-new(root) {
+		animation-duration: 1000ms;
 	}
 
 	.project {
@@ -56,7 +78,6 @@
 
 		projects.forEach((project) => {
 			project.addEventListener("click", function () {
-				// Reset all projects
 				projects.forEach((otherProject) => {
 					otherProject.classList.add(
 						"animate-out",
@@ -66,7 +87,6 @@
 					otherProject.classList.remove("z-10");
 				});
 
-				// Set class on clicked project
 				project.classList.remove("animate-out", "fade-out", "duration-1000");
 				project.classList.add("z-10");
 			});

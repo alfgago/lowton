@@ -18,16 +18,16 @@ const { client, industry, services, about } = Astro.props;
 		<span class="mr-2">•</span>About the Project
 	</div>
 	<div class="flex flex-col sm:flex-row gap-8">
-		{
-			!isEmpty(about) && hasContent(about) && (
-				<div class="w-full">
+		<div class="w-full">
+			{
+				!isEmpty(about) && hasContent(about) && (
 					<div
 						class="text-white text-sm sm:text-base md:text-xl font-normal text-balance"
 						set:html={about}
 					/>
-				</div>
-			)
-		}
+				)
+			}
+		</div>
 		<div class="flex gap-16 sm:gap-4 md:gap-0 sm:justify-evenly sm:w-1/2">
 			<div class="flex flex-col gap-8">
 				{

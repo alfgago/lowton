@@ -3,93 +3,94 @@ import CTAButton from "@/components/CTAButton.astro";
 ---
 
 <section id="about" class="px-8 lg:px-16">
-  <div
-    class="flex flex-col md:flex-row w-full md:justify-between border-b border-[var(--color-primary)]"
-  >
-    <div
-      class="md:w-1/2 text-white font-medium text-sm md:text-base pb-4 md:p-0 uppercase"
-    >
-      <span class="mr-2">•</span>About Us
-    </div>
-    <div class="w-full md:w-[34rem] flex flex-col gap-8 md:gap-16 pb-6">
-      <p
-        class="text-white font-medium text-xl md:text-2xl text-balance data-cursor"
-      >
-        We are experts in mixing the rational and the emotional to offer the
-        most innovative and imaginative solutions to help your brand grow.
-      </p>
-      <div class="flex gap-16 md:justify-end">
-        <div class="flex flex-col gap-4">
-          <span
-            class="counter text-[var(--color-primary)] text-3xl sm:text-6xl md:text-8xl"
-            data-count="1320"
-            >0
-          </span>
-          <span class="bg-[var(--color-primary)] p-[1px] w-full"></span>
-          <span class="text-[var(--color-primary)] text-sm font-normal"
-            >Completed Projects</span
-          >
-        </div>
-        <div class="flex flex-col gap-4">
-          <span
-            class="counter text-[var(--color-primary)] text-3xl sm:text-6xl md:text-8xl"
-            data-count="20"
-            >0
-          </span>
-          <span class="bg-[var(--color-primary)] p-[1px]"></span>
-          <span class="text-[var(--color-primary)] text-sm font-normal"
-            >Years of Experience</span
-          >
-        </div>
-      </div>
-      <CTAButton url="/about" target="_self" text="More About Us" />
-    </div>
-  </div>
+	<div
+		class="flex flex-col md:flex-row w-full md:justify-between border-b border-[var(--color-primary)]">
+		<div
+			class="md:w-1/2 text-white font-medium text-sm md:text-base pb-4 md:p-0 uppercase">
+			<span class="mr-2">•</span>About Us
+		</div>
+		<div class="w-full md:w-[34rem] flex flex-col gap-8 md:gap-16 pb-6">
+			<p
+				class="text-white font-medium text-xl md:text-2xl text-balance data-cursor">
+				We are experts in mixing the rational and the emotional to offer the
+				most innovative and imaginative solutions to help your brand grow.
+			</p>
+			<div class="flex gap-16 md:justify-end">
+				<div class="flex flex-col gap-4">
+					<span
+						class="counter text-[var(--color-primary)] text-3xl sm:text-6xl md:text-8xl"
+						data-count="1320"
+						>0
+					</span>
+					<span class="bg-[var(--color-primary)] p-[1px] w-full"></span>
+					<span class="text-[var(--color-primary)] text-sm font-normal"
+						>Completed Projects</span
+					>
+				</div>
+				<div class="flex flex-col gap-4">
+					<span
+						class="counter text-[var(--color-primary)] text-3xl sm:text-6xl md:text-8xl"
+						data-count="20"
+						>0
+					</span>
+					<span class="bg-[var(--color-primary)] p-[1px]"></span>
+					<span class="text-[var(--color-primary)] text-sm font-normal"
+						>Years of Experience</span
+					>
+				</div>
+			</div>
+			<CTAButton url="/about" target="_self" text="More About Us" />
+		</div>
+	</div>
 </section>
 
 <style>
-  #about > div {
-    padding-bottom: 3rem !important;
-  }
+	#about > div {
+		padding-bottom: 3rem !important;
+	}
 </style>
 
 <script>
-  import { $, $$ } from "@/consts/dom-selector";
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { $$ } from "@/consts/dom-selector";
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  gsap.registerPlugin(ScrollTrigger);
+	document.addEventListener("astro:page-load", () => {
+		gsap.registerPlugin(ScrollTrigger);
 
-  const counters = $$(".counter");
+		const counters = $$(".counter");
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#about",
-      start: "top bottom",
-    },
-  });
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: "#about",
+				start: "top bottom",
+			},
+		});
 
-  counters.forEach((counter) => {
-    const endValue = Math.round(parseInt(counter.getAttribute("data-count")!));
+		counters.forEach((counter) => {
+			const endValue = Math.round(
+				parseInt(counter.getAttribute("data-count")!),
+			);
 
-    tl.fromTo(
-      counter,
-      { textContent: 0 },
-      {
-        textContent: endValue,
-        duration: 1,
-        ease: "power3.out",
-        onUpdate: () => {
-          if (counter.textContent !== null) {
-            const roundedValue = Math.round(Number(counter.textContent));
-            counter.textContent = roundedValue.toString();
-          }
-        },
-        onComplete: () => {
-          counter.textContent += "+";
-        },
-      },
-      0
-    );
-  });
+			tl.fromTo(
+				counter,
+				{ textContent: 0 },
+				{
+					textContent: endValue,
+					duration: 1,
+					ease: "power3.out",
+					onUpdate: () => {
+						if (counter.textContent !== null) {
+							const roundedValue = Math.round(Number(counter.textContent));
+							counter.textContent = roundedValue.toString();
+						}
+					},
+					onComplete: () => {
+						counter.textContent += "+";
+					},
+				},
+				0,
+			);
+		});
+	});
 </script>

@@ -33,7 +33,6 @@ const { title, className, textClass } = Astro.props;
 		#hero {
 			position: sticky;
 			top: 0;
-			z-index: 2;
 		}
 	</style>
 </section>
@@ -42,36 +41,39 @@ const { title, className, textClass } = Astro.props;
 	import SplitType from "split-type";
 	import { gsap } from "gsap";
 	import { $, $$ } from "@/lib/utils";
-	const hero = $("#hero")!;
-	const work = $("#work")!;
 
-	const splitText = document.querySelectorAll<HTMLElement>(".tracking-tight");
+	document.addEventListener("astro:page-load", () => {
+		const hero = $("#hero");
+		const overlap = $(".overlap");
 
-	splitText.forEach((word) => {
-		const text = new SplitType(word, { types: "words" });
+		const splitText = document.querySelectorAll<HTMLElement>(".tracking-tight");
 
-		text.words?.forEach((word) => {
-			const span = document.createElement("span");
-			span.style.display = "inline-block";
-			span.classList.add("overflow-hidden");
-			word.parentNode?.insertBefore(span, word);
-			span.appendChild(word);
+		splitText.forEach((word) => {
+			const text = new SplitType(word, { types: "words" });
+
+			text.words?.forEach((word) => {
+				const span = document.createElement("span");
+				span.style.display = "inline-block";
+				span.classList.add("overflow-hidden");
+				word.parentNode?.insertBefore(span, word);
+				span.appendChild(word);
+			});
+
+			gsap.from(text.words, {
+				yPercent: 130,
+				stagger: 0.05,
+				ease: "back.out",
+				duration: 1,
+			});
 		});
 
-		gsap.from(text.words, {
-			yPercent: 130,
-			stagger: 0.05,
-			ease: "back.out",
-			duration: 1,
+		gsap.to(hero, {
+			position: "relative",
+			scrollTrigger: {
+				trigger: overlap,
+				start: "top top",
+				toggleActions: "play none none reverse",
+			},
 		});
-	});
-
-	gsap.to(hero, {
-		position: "relative",
-		scrollTrigger: {
-			trigger: work,
-			start: "top top",
-			toggleActions: "play none none reverse",
-		},
 	});
 </script>

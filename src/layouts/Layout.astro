@@ -56,6 +56,12 @@ const { title, description, canonical } = Astro.props;
 			header {
 				background-color: var(--background-color);
 			}
+
+			.overlap {
+				position: relative;
+				z-index: 2;
+				background-color: var(--background-color);
+			}
 		</style>
 		<script>
 			import Lenis from "@studio-freight/lenis";

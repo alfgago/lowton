@@ -1,22 +1,16 @@
----
-import { Image } from "astro:assets";
-import projectImage from "@/assets/project.webp";
----
-
-<section id="our-team" class="px-8 lg:px-16">
-	<div class="flex flex-col gap-4 pb-4">
+<section id="our-team" class="px-8 lg:px-16 overlap">
+	<div
+		class="flex flex-col gap-4 pb-4 pt-12 border-t border-[var(--color-primary)]">
 		<div class="text-white font-medium text-sm md:text-base uppercase">
 			<span class="mr-2">•</span>Our Team
 		</div>
 	</div>
 	<div
-		class="flex flex-col gap-14 md:flex-row w-full border-b border-[var(--color-primary)] pb-12"
-	>
+		class="flex flex-col gap-14 md:flex-row w-full border-b border-[var(--color-primary)] pb-12">
 		<div class="w-1/2"></div>
 		<div
-			class="flex w-full md:w-fit gap-8 md:gap-24 justify-center md:justify-end"
-		>
-			<div class="flex flex-col gap-4 data-cursor">
+			class="flex w-full md:w-fit gap-8 md:gap-24 justify-center md:justify-end">
+			<div class="flex flex-col gap-4 data-cursor relative z-10">
 				<div class="flex flex-col">
 					<h3 class="text-xl font-medium text-[var(--color-primary)]">
 						Xavier Illas
@@ -50,7 +44,7 @@ import projectImage from "@/assets/project.webp";
 					</p>
 				</div>
 			</div>
-			<div class="flex flex-col gap-4 data-cursor">
+			<div class="flex flex-col gap-4 data-cursor relative z-10">
 				<div class="flex-col">
 					<h3 class="text-xl font-medium text-[var(--color-primary)]">
 						Lilian B.

@@ -2,7 +2,7 @@
 import ProcessCard from "@/components/ProcessCard.astro";
 ---
 
-<section id="process" class="px-8 lg:px-16">
+<section id="process" class="px-8 lg:px-16 pt-12">
 	<div class="flex flex-col gap-4">
 		<div class="text-white font-medium text-sm md:text-base uppercase">
 			<span class="mr-2">•</span>Process
@@ -56,27 +56,30 @@ import ProcessCard from "@/components/ProcessCard.astro";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	gsap.registerPlugin(ScrollTrigger);
 
-	const sections = gsap.utils.toArray(".process-container .process");
+	document.addEventListener("astro:page-load", () => {
+		if (window.innerWidth > 360) {
+			const sections = gsap.utils.toArray(".process-container .process");
 
-	function updateXPercent() {
-		let xPercent = window.innerWidth < 640 ? -112 : -85;
-		createScrollTween(xPercent);
-	}
+			function updateXPercent() {
+				let xPercent = window.innerWidth < 640 ? -112 : -85;
+				createScrollTween(xPercent);
+			}
 
-	function createScrollTween(xPercent: number) {
-		let scrollTween = gsap.to(sections, {
-			xPercent: xPercent * (sections.length - 1),
-			ease: "none",
-			scrollTrigger: {
-				trigger: "#process",
-				start: "bottom bottom",
-				end: "+4500",
-				pin: true,
-				scrub: 1,
-			},
-		});
-	}
-
-	updateXPercent();
-	window.addEventListener("resize", updateXPercent);
+			function createScrollTween(xPercent: number) {
+				let scrollTween = gsap.to(sections, {
+					xPercent: xPercent * (sections.length - 1),
+					ease: "none",
+					scrollTrigger: {
+						trigger: "#process",
+						start: "bottom bottom",
+						end: "+4500",
+						pin: true,
+						scrub: 1,
+					},
+				});
+			}
+			updateXPercent();
+			window.addEventListener("resize", updateXPercent);
+		}
+	});
 </script>

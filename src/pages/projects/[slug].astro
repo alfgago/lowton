@@ -115,7 +115,7 @@ if (project.videoUrl) {
 			year={project.year}
 			description={project.shortIntro}
 		/>
-		<article id="featured-picture" class="px-8 pb-8">
+		<article id="featured-picture" class="px-8 lg:px-16 pb-8">
 			{
 				project.videoUrl ? (
 					<div class="w-full h-full mt-16 aspect-video">
@@ -143,21 +143,21 @@ if (project.videoUrl) {
 				)
 			}
 		</article>
+		<AboutProject
+			client={project.client}
+			industry={project.industry}
+			services={project.category.map((category) => category.name)}
+			about={project.aboutProject?.html || ""}
+		/>
+		<MediaProject
+			components={project.components}
+			project={project}
+			featuredMediaUrls={featuredMediaUrls}
+		/>
+		<Featured
+			title="Check out some more"
+			border="border-b border-[var(--color-secondary)]"
+		/>
+		<ContactNoForm />
 	</main>
-	<AboutProject
-		client={project.client}
-		industry={project.industry}
-		services={project.category.map((category) => category.name)}
-		about={project.aboutProject?.html || ""}
-	/>
-	<MediaProject
-		components={project.components}
-		project={project}
-		featuredMediaUrls={featuredMediaUrls}
-	/>
-	<Featured
-		title="Check out some more"
-		border="border-b border-[var(--color-secondary)]"
-	/>
-	<ContactNoForm />
 </Layout>

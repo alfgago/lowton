@@ -1,109 +1,107 @@
-<section id="about" class="px-8 lg:px-16">
-  <div class="text-white font-medium text-sm md:text-base uppercase pb-4">
-    <span class="mr-2">•</span><span>About Us</span>
-  </div>
-  <div
-    class="flex flex-col gap-14 md:flex-row w-full border-b border-[var(--color-primary)]"
-  >
-    <div class="md:w-1/2 pb-4 md:p-0 flex flex-col gap-6">
-      <p
-        class="text-white font-normal text-base md:text-3xl text-balance data-cursor"
-      >
-        Over the last 20 years, we have acquired a vast amount of experience and
-        have come up with numerous solutions to offer our partners an
-        all-inclusive way of solving the day-to-day needs of their brand. ​
-      </p>
-      <p
-        class="text-white font-normal text-base md:text-3xl text-balance data-cursor"
-      >
-        We are experts in mixing the rational and the emotional to offer the
-        most innovative and imaginative solutions to help your brand grow.
-      </p>
-      <p
-        class="text-white font-normal text-base md:text-3xl text-balance data-cursor"
-      >
-        We find the perfect tools to achieve your goals. Our team will find the
-        most adequate, secure and fastest way to increase the value of your
-        brand.
-      </p>
-    </div>
+<section
+	id="about"
+	class="px-8 lg:px-16 relative z-[3] bg-[var(--background-color)] pt-12">
+	<div class="text-white font-medium text-sm md:text-base uppercase pb-4">
+		<span class="mr-2">•</span><span>About Us</span>
+	</div>
+	<div
+		class="flex flex-col gap-14 md:flex-row w-full border-b border-[var(--color-primary)]">
+		<div class="md:w-1/2 pb-4 md:p-0 flex flex-col gap-6">
+			<p
+				class="text-white font-normal text-base md:text-3xl text-balance data-cursor">
+				Over the last 20 years, we have acquired a vast amount of experience and
+				have come up with numerous solutions to offer our partners an
+				all-inclusive way of solving the day-to-day needs of their brand. ​
+			</p>
+			<p
+				class="text-white font-normal text-base md:text-3xl text-balance data-cursor">
+				We are experts in mixing the rational and the emotional to offer the
+				most innovative and imaginative solutions to help your brand grow.
+			</p>
+			<p
+				class="text-white font-normal text-base md:text-3xl text-balance data-cursor">
+				We find the perfect tools to achieve your goals. Our team will find the
+				most adequate, secure and fastest way to increase the value of your
+				brand.
+			</p>
+		</div>
 
-    <div class="w-full md:w-fit flex flex-col gap-8 md:gap-16 pb-6">
-      <div class="flex flex-col gap-8 md:justify-end">
-        <div class="flex flex-col gap-4">
-          <span
-            class="counter text-[var(--color-primary)] text-3xl sm:text-6xl md:text-8xl md:leading-[0.9]"
-            data-count="1320"
-            >0
-          </span>
-          <span class="bg-[var(--color-primary)] p-[1px] w-full"></span>
-          <span class="text-[var(--color-primary)] text-sm font-normal"
-            >Completed Projects</span
-          >
-        </div>
-        <div class="flex flex-col gap-4">
-          <span
-            class="counter text-[var(--color-primary)] text-3xl sm:text-6xl md:text-8xl"
-            data-count="20"
-            >0
-          </span>
-          <span class="bg-[var(--color-primary)] p-[1px]"></span>
-          <span class="text-[var(--color-primary)] text-sm font-normal"
-            >Years of Experience</span
-          >
-        </div>
-      </div>
-    </div>
-  </div>
+		<div class="w-full md:w-fit flex flex-col gap-8 md:gap-16 pb-6">
+			<div class="flex flex-col gap-8 md:justify-end">
+				<div class="flex flex-col gap-4">
+					<span
+						class="counter text-[var(--color-primary)] text-3xl sm:text-6xl md:text-8xl md:leading-[0.9]"
+						data-count="1320"
+						>0
+					</span>
+					<span class="bg-[var(--color-primary)] p-[1px] w-full"></span>
+					<span class="text-[var(--color-primary)] text-sm font-normal"
+						>Completed Projects</span
+					>
+				</div>
+				<div class="flex flex-col gap-4">
+					<span
+						class="counter text-[var(--color-primary)] text-3xl sm:text-6xl md:text-8xl"
+						data-count="20"
+						>0
+					</span>
+					<span class="bg-[var(--color-primary)] p-[1px]"></span>
+					<span class="text-[var(--color-primary)] text-sm font-normal"
+						>Years of Experience</span
+					>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 <style>
-  #about > div:nth-child(2) {
-    padding-bottom: 3rem !important;
-  }
+	#about > div:nth-child(2) {
+		padding-bottom: 3rem !important;
+	}
 </style>
 
 <script>
-  import { $, $$ } from "@/consts/dom-selector";
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { $, $$ } from "@/consts/dom-selector";
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  document.addEventListener("astro:page-load", () => {
-    gsap.registerPlugin(ScrollTrigger);
+	document.addEventListener("astro:page-load", () => {
+		gsap.registerPlugin(ScrollTrigger);
 
-    const counters = $$(".counter");
+		const counters = $$(".counter");
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#about",
-        start: "top bottom",
-      },
-    });
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: "#about",
+				start: "top bottom",
+			},
+		});
 
-    counters.forEach((counter) => {
-      const endValue = Math.round(
-        parseInt(counter.getAttribute("data-count")!)
-      );
+		counters.forEach((counter) => {
+			const endValue = Math.round(
+				parseInt(counter.getAttribute("data-count")!),
+			);
 
-      tl.fromTo(
-        counter,
-        { textContent: 0 },
-        {
-          textContent: endValue,
-          duration: 1,
-          ease: "power3.out",
-          onUpdate: () => {
-            if (counter.textContent !== null) {
-              const roundedValue = Math.round(Number(counter.textContent));
-              counter.textContent = roundedValue.toString();
-            }
-          },
-          onComplete: () => {
-            counter.textContent += "+";
-          },
-        },
-        0
-      );
-    });
-  });
+			tl.fromTo(
+				counter,
+				{ textContent: 0 },
+				{
+					textContent: endValue,
+					duration: 1,
+					ease: "power3.out",
+					onUpdate: () => {
+						if (counter.textContent !== null) {
+							const roundedValue = Math.round(Number(counter.textContent));
+							counter.textContent = roundedValue.toString();
+						}
+					},
+					onComplete: () => {
+						counter.textContent += "+";
+					},
+				},
+				0,
+			);
+		});
+	});
 </script>
