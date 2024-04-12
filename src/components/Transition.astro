@@ -44,8 +44,26 @@
 		z-index: 2;
 	} */
 
+	::view-transition-new(project-adidas-f50),
+	::view-transition-new(project-nike-cortez),
+	::view-transition-new(project-pescanova),
+	::view-transition-new(project-lacoste),
+	::view-transition-new(project-nike-loopwheeler),
+	::view-transition-new(project-morgan-stanley),
+	::view-transition-new(project-paisa),
+	::view-transition-new(project-coya-restaurant),
+	::view-transition-new(project-nirvana),
+	::view-transition-new(project-bodega-eduardo-garrido-winrry),
 	::view-transition-old(project-adidas-f50),
-	::view-transition-new(project-adidas-f50) {
+	::view-transition-old(project-nike-cortez),
+	::view-transition-old(project-pescanova),
+	::view-transition-old(project-lacoste),
+	::view-transition-old(project-nike-loopwheeler),
+	::view-transition-old(project-morgan-stanley),
+	::view-transition-old(project-paisa),
+	::view-transition-old(project-coya-restaurant),
+	::view-transition-old(project-nirvana),
+	::view-transition-old(project-bodega-eduardo-garrido-winrry) {
 		animation: none;
 		mix-blend-mode: normal;
 		height: 100%;
@@ -53,21 +71,48 @@
 		z-index: 2;
 	}
 
-	::view-transition-new(project-adidas-f50) {
+	::view-transition-group(project-adidas-f50),
+	::view-transition-group(project-nike-cortez),
+	::view-transition-group(project-pescanova),
+	::view-transition-group(project-lacoste),
+	::view-transition-group(project-nike-loopwheeler),
+	::view-transition-group(project-morgan-stanley),
+	::view-transition-group(project-paisa),
+	::view-transition-group(project-coya-restaurant),
+	::view-transition-group(project-nirvana),
+	::view-transition-group(project-bodega-eduardo-garrido-winrry) {
+		animation-delay: 250ms;
+		animation-duration: 900ms;
+	}
+
+	::view-transition-new(project-adidas-f50),
+	::view-transition-new(project-nike-cortez),
+	::view-transition-new(project-pescanova),
+	::view-transition-new(project-lacoste),
+	::view-transition-new(project-nike-loopwheeler),
+	::view-transition-new(project-morgan-stanley),
+	::view-transition-new(project-paisa),
+	::view-transition-new(project-coya-restaurant),
+	::view-transition-new(project-nirvana),
+	::view-transition-new(project-bodega-eduardo-garrido-winrry) {
 		object-fit: cover;
 	}
-	::view-transition-old(project-adidas-f50) {
+	::view-transition-old(project-adidas-f50),
+	::view-transition-old(project-nike-cortez),
+	::view-transition-old(project-pescanova),
+	::view-transition-old(project-lacoste),
+	::view-transition-old(project-nike-loopwheeler),
+	::view-transition-old(project-morgan-stanley),
+	::view-transition-old(project-paisa),
+	::view-transition-old(project-coya-restaurant),
+	::view-transition-old(project-nirvana),
+	::view-transition-old(project-bodega-eduardo-garrido-winrry) {
 		object-fit: contain;
 	}
 
 	::view-transition-new(root) {
+		animation-delay: 250ms;
 		animation-duration: 1000ms;
-	}
-
-	.project {
-		transition:
-			width 1500ms,
-			height 1500ms;
 	}
 </style>
 

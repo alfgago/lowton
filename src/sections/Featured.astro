@@ -37,7 +37,7 @@ const randomizedProjects = projects
 	<div class:list={[border, "grid grid-cols-1 md:grid-cols-2 gap-8 mt-16"]}>
 		{
 			randomizedProjects.map((project) => (
-				<div class="col-span-1 flex flex-col gap-2">
+				<div class="col-span-1 flex flex-col gap-2 project">
 					<a href={`/projects/${project.slug}`} class="relative group">
 						<div class="rounded-md overflow-hidden">
 							<Image
