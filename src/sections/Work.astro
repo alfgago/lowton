@@ -13,7 +13,7 @@ const projects: Project[] = data.projects;
 
 <section id="work" class="px-8 lg:px-16 overflow-hidden overlap">
 	<div
-		class="w-full flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between lg:pt-12 border-t border-[var(--color-primary)]">
+		class="w-full flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between pt-12 border-t border-[var(--color-primary)]">
 		<div class="md:w-1/2 text-white font-medium text-sm">
 			<p>Based in Sarasota, Florida</p>
 			<p>and Working Worldwide.</p>
@@ -61,22 +61,24 @@ const projects: Project[] = data.projects;
 <script>
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import { $, $$ } from "@/lib/utils";
+	import { $ } from "@/lib/utils";
 
 	document.addEventListener("astro:page-load", () => {
-		const work = $("#work");
-		const grid = $(".image-grid");
-		gsap.registerPlugin(ScrollTrigger);
-		gsap.from(grid, {
-			scale: 1.6,
-			duration: 1,
-			ease: "power3.out",
-			scrollTrigger: {
-				trigger: work,
-				start: "10% bottom",
-				end: "bottom bottom",
-				scrub: true,
-			},
-		});
+		if (window.innerWidth > 360) {
+			const work = $("#work");
+			const grid = $(".image-grid");
+			gsap.registerPlugin(ScrollTrigger);
+			gsap.from(grid, {
+				scale: 1.6,
+				duration: 1,
+				ease: "power3.out",
+				scrollTrigger: {
+					trigger: work,
+					start: "10% bottom",
+					end: "bottom bottom",
+					scrub: true,
+				},
+			});
+		}
 	});
 </script>

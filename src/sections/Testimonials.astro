@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import testimonialImage from "@/assets/testimonial1.webp";
 import type { Testimonial } from "@/consts/projects";
 import client from "@/lib/apollo-client";
 import { TESTIMONIALS } from "@/lib/utils";
@@ -34,25 +32,6 @@ const testimonials: Testimonial[] = data.testimonials;
 							class="text-white font-normal text-sm md:text-base text-balance"
 							set:html={testimonial.text.html}
 						/>
-						<div class="flex w-full gap-4 items-center">
-							<div class="size-10 sm:size-14 overflow-hidden rounded-full">
-								<Image
-									src={testimonialImage}
-									alt="testimonial image"
-									width={56}
-									height={56}
-									class:list={["w-full", "h-full", "object-cover"]}
-								/>
-							</div>
-							<div class="flex flex-col">
-								<h5 class="font-medium text-white text-lg sm:text-xl">
-									{testimonial.name}
-								</h5>
-								<span class="text-white font-normal text-sm sm:text-base">
-									Digital Solutions Agency
-								</span>
-							</div>
-						</div>
 						<span class="bg-[var(--color-secondary)] p-[0.1px] w-full" />
 					</div>
 				))

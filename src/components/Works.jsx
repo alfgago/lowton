@@ -15,6 +15,8 @@ const { data } = await client.query({
 	query: PROJECTS,
 });
 const projects = data.projects;
+const worksSection = document.getElementById('works');
+const worksSectionTop = worksSection.offsetTop;
 
 const Works = () => {
 	const [currentPage, setCurrentPage] = useState(1);
@@ -35,12 +37,14 @@ const Works = () => {
 	const handleNextPage = () => {
 		if (currentPage < totalPages) {
 			setCurrentPage(currentPage + 1);
+			window.scrollTo({ top: worksSectionTop, behavior: 'smooth' });
 		}
 	};
 
 	const handlePrevPage = () => {
 		if (currentPage > 1) {
 			setCurrentPage(currentPage - 1);
+			window.scrollTo({ top: worksSectionTop, behavior: 'smooth' });
 		}
 	};
 
@@ -67,7 +71,10 @@ const Works = () => {
 						: "text-white border border-[var(--color-primary)]"
 				}
 			>
-				<PaginationLink onClick={() => setCurrentPage(page)}>
+				<PaginationLink onClick={() => {
+					setCurrentPage(page);
+					worksSection.scrollIntoView({ behavior: 'smooth' });
+				}}>
 					{page}
 				</PaginationLink>
 			</PaginationItem>
@@ -126,14 +133,14 @@ const Works = () => {
 							<PaginationItem>
 								<PaginationPrevious
 									className="text-white"
-									onClick={handlePrevPage}
+									onClick={() => handlePrevPage()}
 								/>
 							</PaginationItem>
 							{renderPages()}
 							<PaginationItem>
 								<PaginationNext
 									className="text-white"
-									onClick={handleNextPage}
+									onClick={() => handleNextPage()}
 								/>
 							</PaginationItem>
 						</PaginationContent>
