@@ -8,13 +8,15 @@ const { title, text } = Astro.props;
 ---
 
 <div
-	class="w-full sm:w-1/2 p-4 sm:p-8 border border-[var(--color-primary)] bg-[#0a0a0c]/50 data-cursor process"
->
+	class="w-full md:w-1/2 p-4 sm:p-8 border border-[var(--color-primary)] bg-[#0a0a0c]/50 data-cursor process md:h-[60vh]">
 	<div class="grid grid-cols-1 gap-8">
 		<span
-			class="text-white font-normal text-2xl sm:text-3xl md:text-4xl lg:text-5xl uppercase"
+			class="text-white font-normal text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl uppercase"
 			>{title}</span
 		>
-		<p class="text-white text-sm sm:text-xl text-balance">{text}</p>
+		<p
+			class="text-white text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-balance">
+			{text}
+		</p>
 	</div>
 </div>

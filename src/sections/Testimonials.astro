@@ -11,9 +11,10 @@ const testimonials: Testimonial[] = data.testimonials;
 ---
 
 <section id="testimonials" class="px-8 lg:px-16">
-	<div class="flex flex-col md:flex-row w-full md:gap-8 md:justify-between">
+	<div
+		class="flex flex-col md:flex-row w-full md:gap-8 md:justify-between pin-panel">
 		<div
-			class="md:w-1/2 flex flex-col gap-4 text-white font-medium text-sm md:text-base uppercase">
+			class="md:w-1/2 flex flex-col gap-4 text-white font-medium text-sm md:text-base uppercase testimonial-title">
 			<div><span class="mr-2">•</span><span>Testimonials</span></div>
 			<div
 				class="text-white font-medium text-4xl sm:text-5xl md:text-7xl uppercase">
@@ -21,10 +22,10 @@ const testimonials: Testimonial[] = data.testimonials;
 			</div>
 		</div>
 		<div
-			class="w-full flex flex-col gap-4 md:gap-8 md:w-1/2 pt-12 pb-6 mt-16 sm:mt-0">
+			class="w-full flex flex-col gap-4 md:gap-8 md:w-1/2 pt-12 pb-6 sm:mt-16 mt-0 testimonials">
 			{
 				testimonials.slice(0, 3).map((testimonial: Testimonial, i: number) => (
-					<div class="flex flex-col gap-4 md:gap-8 data-cursor testimonial p-8 rounded-lg">
+					<div class="flex flex-col gap-4 md:gap-8 data-cursor testimonial p-0 py-8 md:p-8 rounded-lg">
 						<span class="text-[var(--color-primary)] font-normal text-sm md:text-base">
 							{i + 1}.
 						</span>
@@ -32,6 +33,13 @@ const testimonials: Testimonial[] = data.testimonials;
 							class="text-white font-normal text-sm md:text-base text-balance"
 							set:html={testimonial.text.html}
 						/>
+						<div class="flex w-full gap-4 items-center">
+							<div class="flex flex-col">
+								<h5 class="font-medium text-white text-lg sm:text-xl">
+									{testimonial.name}
+								</h5>
+							</div>
+						</div>
 						<span class="bg-[var(--color-secondary)] p-[0.1px] w-full" />
 					</div>
 				))
@@ -41,33 +49,48 @@ const testimonials: Testimonial[] = data.testimonials;
 </section>
 
 <style>
-	#testimonials {
-		margin: 3rem 0 !important;
+	.pin-panel .testimonials {
+		flex-basis: calc(50% - 2rem + 1rem);
+	}
+	.testimonial {
+		background-color: var(--background-color);
+	}
+	.testimonial:nth-child(2) {
+		z-index: 10;
 	}
 
-	.testimonial:nth-child(2) {
-		position: absolute;
-		background-color: var(--background-color);
-	}
 	.testimonial:nth-child(3) {
-		position: absolute;
-		background-color: var(--background-color);
+		z-index: 11;
 	}
 </style>
 
-<!-- <script>
+<script>
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	gsap.registerPlugin(ScrollTrigger);
 
-	console.log("Elements found:", document.querySelectorAll(".testimonial"));
-	gsap.utils.toArray(".testimonial").forEach((testimonial) => {
-		console.log("Testimonial Element:", testimonial);
+	let cards = gsap.utils.toArray(".testimonial") as HTMLElement[];
+
+	const spacer = 20;
+
+	cards.forEach((card, i) => {
+		const cardHeight = card.scrollHeight;
 
 		ScrollTrigger.create({
-			trigger: testimonial as unknown as Element,
-			start: "top top",
+			trigger: card,
+			start: `top-=${i * spacer} top+=10px`,
+			endTrigger: ".pin-panel",
+			end: `bottom top+=${cards.length * spacer + cardHeight}`,
 			pin: true,
+			scrub: 3,
+			invalidateOnRefresh: true,
 		});
 	});
-</script> -->
+
+	ScrollTrigger.create({
+		trigger: ".testimonial-title",
+		start: "top 10",
+		end: "bottom bottom",
+		pin: true,
+	});
+</script>

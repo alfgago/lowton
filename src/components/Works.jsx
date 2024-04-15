@@ -15,13 +15,14 @@ const { data } = await client.query({
 	query: PROJECTS,
 });
 const projects = data.projects;
-const worksSection = document.getElementById('works');
-const worksSectionTop = worksSection.offsetTop;
 
 const Works = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [projectsPerPage] = useState(6);
 	const [totalPages, setTotalPages] = useState(0);
+
+	const worksSection = document.getElementById('works');
+
 
 	useEffect(() => {
 		const total = Math.ceil(projects.length / projectsPerPage);
@@ -37,14 +38,16 @@ const Works = () => {
 	const handleNextPage = () => {
 		if (currentPage < totalPages) {
 			setCurrentPage(currentPage + 1);
-			window.scrollTo({ top: worksSectionTop, behavior: 'smooth' });
+			worksSection.scrollIntoView({ behavior: 'smooth' });
+
 		}
 	};
 
 	const handlePrevPage = () => {
 		if (currentPage > 1) {
 			setCurrentPage(currentPage - 1);
-			window.scrollTo({ top: worksSectionTop, behavior: 'smooth' });
+			worksSection.scrollIntoView({ behavior: 'smooth' });
+
 		}
 	};
 

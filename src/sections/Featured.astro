@@ -83,6 +83,7 @@ const randomizedProjects = projects
 <style>
 	#featured {
 		margin-top: 3rem !important;
+		z-index: 0;
 	}
 	#featured > div:nth-child(2) {
 		padding-bottom: 3rem !important;
@@ -91,3 +92,7 @@ const randomizedProjects = projects
 		aspect-ratio: 1.475 / 1;
 	}
 </style>
+
+<script is:inline data-astro-rerun>
+	window.scrollTo({ top: 0, behavior: "smooth" });
+</script>

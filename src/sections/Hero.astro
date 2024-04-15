@@ -41,6 +41,8 @@ const { title, className, textClass } = Astro.props;
 	import SplitType from "split-type";
 	import { gsap } from "gsap";
 	import { $ } from "@/lib/utils";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
 
 	document.addEventListener("astro:page-load", () => {
 		const hero = $("#hero");
