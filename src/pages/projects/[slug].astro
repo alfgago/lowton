@@ -120,9 +120,13 @@ if (project.videoUrl) {
 				project.videoUrl ? (
 					<div class="w-full h-full mt-16 aspect-video">
 						<iframe
+							width="560"
+							height="315"
 							class="w-full h-full object-cover"
-							src={project.videoUrl}
-							allow="autoplay"
+							src={`${project.videoUrl}?&autoplay=1&mute=1&controls=0`}
+							title="YouTube video player"
+							allow="autoplay;"
+							allowfullscreen
 						/>
 					</div>
 				) : (

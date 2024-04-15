@@ -90,6 +90,14 @@ const pages = [
 	import { $ } from "@/consts/dom-selector";
 
 	document.addEventListener("astro:page-load", () => {
+		const nav = document.querySelector("#header-menu");
+		const navLinks = nav?.querySelectorAll("a");
+		const currentURL = window.location.href;
+		navLinks?.forEach((link) => {
+			if (link.href === currentURL) {
+				link.classList.add("active");
+			}
+		});
 		const navbar = $("#header-nav");
 
 		window.onwheel = (e) => {

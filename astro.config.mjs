@@ -4,18 +4,17 @@ import vercel from "@astrojs/vercel/serverless";
 import { defineConfig } from "astro/config";
 import { seoConfig } from "./src/utils/seoConfig";
 
+import vtbot from "astro-vtbot";
+
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		tailwind({
-			applyBaseStyles: false,
-		}),
-		react(),
-	],
-	output: "hybrid",
-	image: {
-		domains: ["us-east-1-shared-usea1-02.graphassets.com"],
-	  },
-	adapter: vercel(),
-	site: seoConfig.baseURL,
+  integrations: [tailwind({
+    applyBaseStyles: false
+  }), react(), vtbot()],
+  output: "hybrid",
+  image: {
+    domains: ["us-east-1-shared-usea1-02.graphassets.com"]
+  },
+  adapter: vercel(),
+  site: seoConfig.baseURL
 });

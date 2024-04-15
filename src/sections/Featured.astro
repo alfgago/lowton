@@ -17,10 +17,11 @@ const { data } = await client.query({
 });
 
 const projects: Project[] = data.projects;
-
+const currentProjectSlug = Astro.url.pathname.split("/").slice(-1)[0];
 const randomizedProjects = projects
 	.slice()
 	.sort(() => Math.random() - 0.5)
+	.filter((project) => project.slug !== currentProjectSlug)
 	.slice(0, 2);
 ---
 

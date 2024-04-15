@@ -21,24 +21,26 @@ const { title, description, year, client } = Astro.props;
 		</h1>
 	</div>
 	<div class="flex flex-col sm:flex-row w-full mt-14 pb-10 gap-8 sm:gap-0">
-		<div class="flex w-full sm:w-1/2">
-			{
-				!isEmpty(client) && (
-					<div class="flex flex-col w-full sm:w-1/2 gap-2">
-						<p class="text-white text-sm sm:text-base font-medium">Client</p>
-						<p class="text-white text-sm sm:text-base font-normal">{client}</p>
-					</div>
-				)
-			}
-			{
-				!isEmpty(year) && (
-					<div class="flex flex-col w-full sm:w-1/2 gap-2">
-						<p class="text-white text-sm sm:text-base font-medium">Year</p>
-						<p class="text-white text-sm sm:text-base font-normal">{year}</p>
-					</div>
-				)
-			}
-		</div>
+		{
+			!isEmpty(year) && !isEmpty(client) && (
+				<div class="flex w-full sm:w-1/2">
+					{!isEmpty(client) && (
+						<div class="flex flex-col w-full sm:w-1/2 gap-2">
+							<p class="text-white text-sm sm:text-base font-medium">Client</p>
+							<p class="text-white text-sm sm:text-base font-normal">
+								{client}
+							</p>
+						</div>
+					)}
+					{!isEmpty(year) && (
+						<div class="flex flex-col w-full sm:w-1/2 gap-2">
+							<p class="text-white text-sm sm:text-base font-medium">Year</p>
+							<p class="text-white text-sm sm:text-base font-normal">{year}</p>
+						</div>
+					)}
+				</div>
+			)
+		}
 
 		{
 			!isEmpty(description) && (
