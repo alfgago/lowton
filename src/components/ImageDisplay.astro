@@ -5,21 +5,25 @@ import type { Component } from "@/consts/projects";
 import { Image } from "astro:assets";
 ---
 
-<div class="flex flex-col gap-8">
-	{
-		component.map((c: Component) => (
-			<div class="w-full rounded-xl overflow-hidden">
-				<Image
-					width={c.image?.width || 1200}
-					height={c.image?.height || 800}
-					quality="mid"
-					class:list={["w-full object-cover"]}
-					alt={`"${c.image?.alt}"`}
-					src={c.image?.url || c.images?.[0]?.url || ""}
-				/>
-			</div>
-		))
-	}
+<div class="grid pb-12 grid-cols-12">
+	<div class="grid col-span-10 col-start-2">
+		<div class:list={["grid gap-8 pb-12 grid-cols-1", `md:grid-cols-2`]}>
+			{
+				component.map((c: Component) => (
+					<div class="col-span-1 flex flex-col gap-2 rounded-xl overflow-hidden">
+						<Image
+							width={c.image?.width || 1200}
+							height={c.image?.height || 800}
+							quality="mid"
+							class:list={["w-full object-contain"]}
+							alt={`"${c.image?.alt}"`}
+							src={c.image?.url || c.images?.[0]?.url || ""}
+						/>
+					</div>
+				))
+			}
+		</div>
+	</div>
 </div>
 
 <style>

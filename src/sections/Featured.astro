@@ -56,7 +56,7 @@ const randomizedProjects = projects
 									project.featuredImage?.url ||
 									project.components[0]?.image?.url ||
 									project.components?.[0]?.images?.[0]?.url ||
-									"https://us-east-1-shared-usea1-02.graphassets.com/clulsp1wn097s07lh2tvpebkn/clumdqwne8ep008lllmyqpcgg"
+									""
 								}
 							/>
 						</div>
@@ -72,8 +72,7 @@ const randomizedProjects = projects
 						/>
 					</div>
 					<p class="text-xs md:text-sm text-[var(--color-primary)]">
-						{project.category.map((category) => category.name).join(" • ") ||
-							project.shortIntro}
+						{project.category.map((category) => category.name).join(" • ")}
 					</p>
 				</div>
 			))
@@ -94,6 +93,8 @@ const randomizedProjects = projects
 	}
 </style>
 
-<script is:inline data-astro-rerun>
-	window.scrollTo({ top: 0, behavior: "smooth" });
+<script>
+	document.addEventListener("astro:after-swap", () => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	});
 </script>

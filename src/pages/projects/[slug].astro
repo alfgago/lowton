@@ -86,12 +86,10 @@ const SINGLE_PROJECT = gql`
 `;
 
 const { slug } = Astro.params;
-
 const { data } = await client.query({
 	query: SINGLE_PROJECT,
 	variables: { slug: slug },
 });
-
 const project: Project = data.project;
 
 export const prerender = true;
@@ -134,7 +132,7 @@ if (project.videoUrl) {
 						transition:name={`project-${project.slug}`}
 						width={project.featuredImage?.width || 500}
 						height={project.featuredImage?.height || 500}
-						class:list={["w-full object-cover h-full aspect-video"]}
+						class:list={["w-full object-cover h-full"]}
 						quality="mid"
 						alt={project.components[0]?.image?.alt || "Featured project image"}
 						src={
@@ -165,6 +163,8 @@ if (project.videoUrl) {
 		<ContactNoForm />
 	</main>
 </Layout>
-<script is:inline data-astro-rerun>
-	window.scrollTo({ top: 0, behavior: "smooth" });
+<script>
+	document.addEventListener("astro:after-swap", () => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	});
 </script>

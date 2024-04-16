@@ -7,23 +7,23 @@ let [images] = component.map((c: Component) => c.images);
 let [columns] = component.map((c: Component) => c.columns);
 ---
 
-<div
-	class:list={[
-		"grid gap-8 mt-16 pb-12 grid-cols-1",
-		`md:grid-cols-${columns}`,
-	]}>
-	{
-		images.map((i: any) => (
-			<div class="col-span-1 flex flex-col gap-2 rounded-xl overflow-hidden">
-				<Image
-					width={i.width || 500}
-					height={i.height || 500}
-					quality="low"
-					src={i.url}
-					alt={`"${i.alt}"`}
-					class="w-full object-cover aspect-square"
-				/>
-			</div>
-		))
-	}
+<div class="grid pb-12 grid-cols-12">
+	<div class="grid col-span-10 col-start-2">
+		<div class:list={["grid gap-8 grid-cols-1", `md:grid-cols-${columns}`]}>
+			{
+				images.map((i: any) => (
+					<div class="col-span-1 flex flex-col gap-2 rounded-xl overflow-hidden">
+						<Image
+							width={i.width || 500}
+							height={i.height || 500}
+							quality="low"
+							src={i.url}
+							alt={`"${i.alt}"`}
+							class="w-full object-cover"
+						/>
+					</div>
+				))
+			}
+		</div>
+	</div>
 </div>

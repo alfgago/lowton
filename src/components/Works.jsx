@@ -104,7 +104,7 @@ const Works = () => {
 										project.featuredImage?.url ||
 										project.components[0]?.image?.url ||
 										project.components?.[0]?.images?.[0]?.url ||
-										"https://us-east-1-shared-usea1-02.graphassets.com/clulsp1wn097s07lh2tvpebkn/clumdqwne8ep008lllmyqpcgg"
+										""
 									}
 									className="w-full object-cover h-full group-hover:scale-105 transition-all duration-1000 ease-expo pointer-events-none"
 								/>

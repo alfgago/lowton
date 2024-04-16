@@ -43,12 +43,14 @@ const projects: Project[] = data.projects;
 								width={project.featuredImage?.width || 500}
 								height={project.featuredImage?.height || 500}
 								quality={"mid"}
-								alt=""
+								alt={
+									project.components[0]?.image?.alt || "Featured project image"
+								}
 								src={
 									project.featuredImage?.url ||
 									project.components[0]?.image?.url ||
 									project.components?.[0]?.images?.[0]?.url ||
-									"https://us-east-1-shared-usea1-02.graphassets.com/clulsp1wn097s07lh2tvpebkn/clumdqwne8ep008lllmyqpcgg"
+									""
 								}
 							/>
 						</a>
