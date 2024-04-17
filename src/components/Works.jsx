@@ -86,7 +86,7 @@ const Works = () => {
 
 	return (
 		<section id="works" className="px-8 lg:px-16 overlap py-12">
-			<div className="grid grid-cols-2 gap-8 mt-16 pb-12">
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 pb-12">
 				{getProjectsForPage().map((project, idx) => (
 					<div key={idx} className="col-span-1 flex flex-col gap-2">
 						<a href={`/projects/${project.slug}`} className="relative group">

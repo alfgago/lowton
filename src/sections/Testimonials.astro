@@ -54,6 +54,7 @@ const testimonials: Testimonial[] = data.testimonials;
 	}
 	.testimonial {
 		background-color: var(--background-color);
+		z-index: 9;
 	}
 	.testimonial:nth-child(2) {
 		z-index: 10;
@@ -78,7 +79,7 @@ const testimonials: Testimonial[] = data.testimonials;
 
 		ScrollTrigger.create({
 			trigger: card,
-			start: `top-=${i * spacer} top+=10px`,
+			start: `top-=${i}`,
 			endTrigger: ".pin-panel",
 			end: `bottom top+=${cards.length * spacer + cardHeight}`,
 			pin: true,

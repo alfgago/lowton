@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 ---
 
 <div class="grid pb-12 grid-cols-12">
-	<div class="grid col-span-10 col-start-2">
+	<div class="grid col-span-12 sm:col-span-10 sm:col-start-2">
 		<div class:list={["grid gap-8 pb-12 grid-cols-1", `md:grid-cols-2`]}>
 			{
 				component.map((c: Component) => (
@@ -15,7 +15,7 @@ import { Image } from "astro:assets";
 							width={c.image?.width || 1200}
 							height={c.image?.height || 800}
 							quality="mid"
-							class:list={["w-full object-contain"]}
+							class:list={["w-full object-cover"]}
 							alt={`"${c.image?.alt}"`}
 							src={c.image?.url || c.images?.[0]?.url || ""}
 						/>
@@ -25,9 +25,3 @@ import { Image } from "astro:assets";
 		</div>
 	</div>
 </div>
-
-<style>
-	img {
-		aspect-ratio: 1.5 / 1;
-	}
-</style>

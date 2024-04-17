@@ -26,7 +26,7 @@ const projects: Project[] = data.projects;
 	</div>
 	<div class="overflow-hidden rounded-lg">
 		<div
-			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 image-grid">
+			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 image-grid pt-64 sm:pt-0">
 			{
 				projects.slice(0, 9).map((project: any) => (
 					<div
@@ -83,7 +83,4 @@ const projects: Project[] = data.projects;
 			});
 		}
 	});
-</script>
-<script is:inline data-astro-rerun>
-	window.scrollTo({ top: 0, behavior: "smooth" });
 </script>

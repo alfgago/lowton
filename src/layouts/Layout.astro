@@ -25,7 +25,7 @@ const { title, description, canonical } = Astro.props;
 	</head>
 	<body>
 		<Cursor className="hidden lg:block" />
-		<Header />
+		<Header transition:persist />
 		<slot />
 		<Footer />
 		<Transition />
@@ -58,7 +58,12 @@ const { title, description, canonical } = Astro.props;
 			}
 
 			header {
-				background-color: var(--background-color);
+				background: linear-gradient(
+					180deg,
+					#000b08 0%,
+					rgba(8, 21, 17, 0.69) 41.67%,
+					rgba(23, 61, 51, 0) 100%
+				);
 			}
 
 			.overlap {
@@ -66,8 +71,19 @@ const { title, description, canonical } = Astro.props;
 				z-index: 2;
 				background-color: var(--background-color);
 			}
+			p,
+			span,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5 {
+				position: relative;
+				z-index: 12;
+			}
 		</style>
 		<script>
+			import { seoConfig } from "@/utils/seoConfig";
 			import Lenis from "@studio-freight/lenis";
 
 			if (window.innerWidth > 360) {
@@ -78,6 +94,7 @@ const { title, description, canonical } = Astro.props;
 				}
 				requestAnimationFrame(raf);
 			}
+			console.log(seoConfig.baseURL);
 		</script>
 	</body>
 </html>
