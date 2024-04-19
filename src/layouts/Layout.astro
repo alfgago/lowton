@@ -7,7 +7,6 @@ import { ViewTransitions } from "astro:transitions";
 import "@/styles/globals.css";
 import SEO from "@/components/SEO.astro";
 import Transition from "@/components/Transition.astro";
-import VtBotDebug from "astro-vtbot/components/VtBotDebug.astro";
 
 interface Props {
 	title: string;
@@ -22,7 +21,6 @@ const { title, description, canonical } = Astro.props;
 <html lang="en">
 	<head>
 		<SEO canonical={canonical} description={description} title={title} />
-		<VtBotDebug />
 		<ViewTransitions />
 	</head>
 	<body>
