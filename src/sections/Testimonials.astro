@@ -70,28 +70,30 @@ const testimonials: Testimonial[] = data.testimonials;
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	gsap.registerPlugin(ScrollTrigger);
 
-	let cards = gsap.utils.toArray(".testimonial") as HTMLElement[];
+	document.addEventListener("astro:page-load", () => {
+		let cards = gsap.utils.toArray(".testimonial") as HTMLElement[];
 
-	const spacer = 20;
+		const spacer = 20;
 
-	cards.forEach((card, i) => {
-		const cardHeight = card.scrollHeight;
+		cards.forEach((card, i) => {
+			const cardHeight = card.scrollHeight;
+
+			ScrollTrigger.create({
+				trigger: card,
+				start: `top-=${i}`,
+				endTrigger: ".pin-panel",
+				end: `bottom top+=${cards.length * spacer + cardHeight}`,
+				pin: true,
+				scrub: 3,
+				invalidateOnRefresh: true,
+			});
+		});
 
 		ScrollTrigger.create({
-			trigger: card,
-			start: `top-=${i}`,
-			endTrigger: ".pin-panel",
-			end: `bottom top+=${cards.length * spacer + cardHeight}`,
+			trigger: ".testimonial-title",
+			start: "top 10",
+			end: "bottom bottom",
 			pin: true,
-			scrub: 3,
-			invalidateOnRefresh: true,
 		});
-	});
-
-	ScrollTrigger.create({
-		trigger: ".testimonial-title",
-		start: "top 10",
-		end: "bottom bottom",
-		pin: true,
 	});
 </script>

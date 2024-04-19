@@ -7,6 +7,7 @@ import { ViewTransitions } from "astro:transitions";
 import "@/styles/globals.css";
 import SEO from "@/components/SEO.astro";
 import Transition from "@/components/Transition.astro";
+import VtBotDebug from "astro-vtbot/components/VtBotDebug.astro";
 
 interface Props {
 	title: string;
@@ -21,14 +22,15 @@ const { title, description, canonical } = Astro.props;
 <html lang="en">
 	<head>
 		<SEO canonical={canonical} description={description} title={title} />
+		<VtBotDebug />
 		<ViewTransitions />
 	</head>
 	<body>
+		<Transition transition:persist />
 		<Cursor className="hidden lg:block" />
 		<Header transition:persist />
 		<slot />
 		<Footer />
-		<Transition />
 		<style is:global>
 			:root {
 				--color-primary: #00ff18;
@@ -83,9 +85,7 @@ const { title, description, canonical } = Astro.props;
 			}
 		</style>
 		<script>
-			import { seoConfig } from "@/utils/seoConfig";
 			import Lenis from "@studio-freight/lenis";
-
 			if (window.innerWidth > 360) {
 				const lenis = new Lenis();
 				function raf(time: any) {
@@ -94,7 +94,6 @@ const { title, description, canonical } = Astro.props;
 				}
 				requestAnimationFrame(raf);
 			}
-			console.log(seoConfig.baseURL);
 		</script>
 	</body>
 </html>

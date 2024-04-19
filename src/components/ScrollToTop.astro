@@ -1,0 +1,11 @@
+<script>
+	import { gsap } from "gsap";
+	import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+	gsap.registerPlugin(ScrollToPlugin);
+
+	document.addEventListener("astro:after-swap", () => {
+		if (window.location.pathname.startsWith("/projects/")) {
+			gsap.to(window, { duration: 1, scrollTo: 0 });
+		}
+	});
+</script>

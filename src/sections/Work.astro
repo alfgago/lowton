@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import type { Project } from "@/consts/projects";
 import client from "@/lib/apollo-client";
 import { PROJECTS } from "@/lib/utils";
+import Transition from "@/components/Transition.astro";
 
 const { data } = await client.query({
 	query: PROJECTS,

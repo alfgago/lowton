@@ -11,6 +11,7 @@ import MediaProject from "@/components/MediaProject.astro";
 import ContactNoForm from "@/components/ContactNoForm.astro";
 
 import Featured from "@/sections/Featured.astro";
+import ScrollToTop from "@/components/ScrollToTop.astro";
 
 export async function getStaticPaths() {
 	const { data } = await client.query({
@@ -92,8 +93,6 @@ const { data } = await client.query({
 });
 const project: Project = data.project;
 
-export const prerender = true;
-
 let featuredMediaUrls = [];
 if (project.featuredImage?.url) {
 	featuredMediaUrls.push(project.featuredImage.url);
@@ -105,7 +104,8 @@ if (project.videoUrl) {
 
 <Layout
 	title={`${project.name} - Lowton Advertising`}
-	description=`Información acerca del proyecto ${project.name}`>
+	description=`Información acerca del proyecto ${project.name}`
+	canonical=`https://lowton.tv/projects/${project.slug}`>
 	<main>
 		<ProjectTitle
 			title={project.name}
@@ -160,11 +160,7 @@ if (project.videoUrl) {
 			title="Check out some more"
 			border="border-b border-[var(--color-secondary)]"
 		/>
+		<ScrollToTop />
 		<ContactNoForm />
 	</main>
 </Layout>
-<script>
-	document.addEventListener("astro:after-swap", () => {
-		window.scrollTo({ top: 0, behavior: "smooth" });
-	});
-</script>

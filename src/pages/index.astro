@@ -7,14 +7,12 @@ import Hero from "@/sections/Hero.astro";
 import Services from "@/sections/Services.astro";
 import Testimonials from "@/sections/Testimonials.astro";
 import Work from "@/sections/Work.astro";
-
-export const prerender = true;
 ---
 
 <Layout
 	title="Lowton Advertising"
 	description="Experts in mixing the rational and the emotional to offer the most innovative and imaginative solutions to help your brand grow."
-	canonical="https://lowton.vercel.app/">
+	canonical="https://lowton.tv/">
 	<main class="space-y-24">
 		<Hero
 			title="If you want your business to do better, make people's lives better."
@@ -31,3 +29,8 @@ export const prerender = true;
 		<Contact subtitle="Let's Talk" title="Contact" />
 	</main>
 </Layout>
+<script>
+	document.addEventListener("astro:page-load", () => {
+		console.log(window.scrollY);
+	});
+</script>

@@ -42,9 +42,9 @@ const { title, className, textClass } = Astro.props;
 	import { gsap } from "gsap";
 	import { $ } from "@/lib/utils";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	gsap.registerPlugin(ScrollTrigger);
 
 	document.addEventListener("astro:page-load", () => {
+		gsap.registerPlugin(ScrollTrigger);
 		const hero = $("#hero");
 		const overlap = $(".overlap");
 

@@ -1,3 +1,4 @@
+import partytown from '@astrojs/partytown';
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
@@ -8,7 +9,13 @@ import { seoConfig } from "./src/utils/seoConfig";
 export default defineConfig({
   integrations: [tailwind({
     applyBaseStyles: false
-  }), react()],
+  }), react(),
+  partytown({
+	config: {
+	  forward: ["dataLayer.push"],
+	},
+  }),
+],
   output: "hybrid",
   image: {
     domains: ["us-east-1-shared-usea1-02.graphassets.com"]
