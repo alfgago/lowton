@@ -111,9 +111,9 @@ const Works = () => {
 							</div>
 						</a>
 						<div className="flex justify-between items-center">
-							<h4 className="text-base text-[var(--color-primary)]">
+							<h2 className="text-base text-[var(--color-primary)]">
 								{project.name}
-							</h4>
+							</h2>
 							<CTAButtonGreen
 								target="_blank"
 								url={`/projects/${project.slug}`}
